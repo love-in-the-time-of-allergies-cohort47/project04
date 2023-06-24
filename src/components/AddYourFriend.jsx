@@ -1,12 +1,38 @@
+import AllergensList from "./AllergensList";
+import { useState, useContext } from "react";
+import { AllergiesList } from './FriendInfoContext';
+
 const AddYourFriend = () => {
+    const [name, setName] = useState("");
+    const {allergyInfo} = useContext(AllergiesList);
+    const [friendInfo, setFriendInfo] = useState({
+        name: "",
+        allergies: []
+    })
+
+
+    const handleNameChange = (e) => {
+       const friendName =e.target.value;
+       setName(friendName)  
+       setFriendInfo(
+        {
+            name: friendName,
+            allergies: allergyInfo
+        }
+       )
+       
+    };
+
+    console.log(friendInfo)
+    
     return (
         <div className="wrapper">
             <form action="">
                 <label htmlFor="addAFriend" id="addAFriend">Add a Friend!</label>
-                <input id="addAFriend" type="text" />
+                <input id="addAFriend" type="text" onChange={handleNameChange} value={name}/>
 
                 {/* Mary's buttons */}
-                <fieldset>
+                {/* <fieldset>
                     <legend>Any dietary restrictions</legend>
                     <div>
                         <input type="checkbox" id="none" name="none" checked />
@@ -32,7 +58,10 @@ const AddYourFriend = () => {
                         <input type="checkbox" id="eggFree" name="eggFree" />
                         <label htmlFor="meatFree">Meat Free</label>
                     </div>                    
-                </fieldset>
+                </fieldset> */}
+
+                <AllergensList 
+                />
             </form>
         </div>
     )
