@@ -4,15 +4,17 @@ import { useState, useEffect, useContext } from "react";
 import { AllergiesList } from './FriendInfoContext'
 
 export default function AllergensList() {
-  const[allergies, setAllergies]=useState([])
-  const {setAllergyInfo} = useContext(AllergiesList)
+  // const[allergies, setAllergies]=useState([])
+  const {allergyInfo, setAllergyInfo} = useContext(AllergiesList)
 
   const handleClick = (e ) => {
     e.preventDefault();
    const item =e.target.value;
-   setAllergies([...allergies, item])
-   setAllergyInfo([...allergies, item])  
+   setAllergyInfo([...allergyInfo, item])  
+  //  setAllergies([...allergies, item])
   };
+
+
 
   return (
     <div>
