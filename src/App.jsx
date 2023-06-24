@@ -13,11 +13,11 @@ function App() {
 
   return (
     <AllergiesList.Provider
-    value={{ allergyInfo, setAllergyInfo }}
+      value={{ allergyInfo, setAllergyInfo }}
     >
-  <main>
-      <AddYourFriend />
-    </main>
+      <main>
+        <AddYourFriend />
+      </main>
     </AllergiesList.Provider>
   )
 }
