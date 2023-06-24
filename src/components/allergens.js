@@ -1,0 +1,23 @@
+export const allergens = [
+    "alcohol-free",
+    "celery-free",
+    "crustacean-free",
+    "dairy-free",
+    "egg-free",
+    "fish-free",
+    "fodmap-free",
+    "gluten-free",
+    "lupine-free",
+    "mollusk-free",
+    "mustard-free",
+    "No-oil-added",
+    "peanut-free",
+    "pork-free",
+    "red-meat-free",
+    "sesame-free",
+    "shellfish-free",
+    "soy-free",
+    "sulfite-free",
+    "tree-nut-free",
+    "wheat-free"
+];
