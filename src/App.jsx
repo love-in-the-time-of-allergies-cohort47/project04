@@ -1,15 +1,8 @@
-import { useState } from 'react'
-
+import AddYourFriend from "./com"
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      
-    </>
-  )
+  return <AddYourFriend />;
 }
 
 export default App

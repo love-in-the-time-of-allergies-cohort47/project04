@@ -1,4 +1,4 @@
-export const Allergens = [
+export const allergens = [
     "alcohol-free",
     "celery-free",
     "crustacean-free",
