@@ -1,14 +1,21 @@
 import React from "react";
-import {allergens} from "./allergens"; 
+import { allergens } from "./allergens";
 import { useState, useEffect, useContext } from "react";
-import {allergiesList} from "./FriendInfoContext";
+import { AllergiesList } from './FriendInfoContext'
 
-export default function AllergensList( ) {
+export default function AllergensList() {
+  // const[allergies, setAllergies]=useState([])
+  const {allergyInfo, setAllergyInfo} = useContext(AllergiesList)
 
-  const handleClick = (e) => {
+  const handleClick = (e ) => {
     e.preventDefault();
-    const item = e.target.value;
+   const item =e.target.value;
+   setAllergyInfo([...allergyInfo, item])  
+  //  setAllergies([...allergies, item])
   };
+
+
+
   return (
     <div>
       {allergens.map((item, index) => (
@@ -19,3 +26,4 @@ export default function AllergensList( ) {
     </div>
   );
 }
+
