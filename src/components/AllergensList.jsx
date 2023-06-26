@@ -9,7 +9,7 @@ export default function AllergensList() {
    setAllergies([...allergies, item])
 
   };
-console.log(allergies);
+
   return (
     <div>
       {allergens.map((item, index) => (

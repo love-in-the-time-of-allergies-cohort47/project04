@@ -1,7 +1,7 @@
-import Connect from './components/Connect'
+// import Connect from './components/Connect'
 import AddYourFriend from './components/AddYourFriend'
-import ShowFriends from './components/ShowFriends'
-import Party from './components/Party'
+// import ShowFriends from './components/ShowFriends'
+// import Party from './components/Party'
 import { AllergiesList } from './components/FriendInfoContext'
 
 import { useState } from 'react'
@@ -13,17 +13,14 @@ function App() {
 
   return (
     <AllergiesList.Provider
-    value={{ allergyInfo, setAllergyInfo }}
+      value={{ allergyInfo, setAllergyInfo }}
     >
-  <main>
-      <AddYourFriend />
-    </main>
-=========
-    <>
-      
-    </>
->>>>>>>>> Temporary merge branch 2
+      <main>
+        <AddYourFriend />
+      </main>
+    </AllergiesList.Provider>
   )
 }
+      
 
 export default App
