@@ -1,14 +1,21 @@
-import { useState } from "react";
+
 import { allergens } from "./allergens";
+import {useContext } from "react";
+import { AllergiesList } from './FriendInfoContext'
 
 export default function AllergensList() {
-  const[allergies, setAllergies]=useState([])
+  // const[allergies, setAllergies]=useState([])
+  const {allergyInfo, setAllergyInfo} = useContext(AllergiesList)
+
   const handleClick = (e ) => {
     e.preventDefault();
+    e.target.style.backgroundColor= "rgb(202, 150, 39)"
    const item =e.target.value;
-   setAllergies([...allergies, item])
-
+   setAllergyInfo([...allergyInfo, item])  
+  //  setAllergies([...allergies, item])
   };
+
+
 
   return (
     <div>
