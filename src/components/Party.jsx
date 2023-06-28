@@ -6,6 +6,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 
 const WhosComingToParty=()=>{
     const [searchableList, setSearchableList] = useState([]);
+    const[partyAllergies, setPartyAllergies]= useState([]);
 
 
     useEffect(() => {
@@ -19,19 +20,24 @@ const WhosComingToParty=()=>{
     onValue(dbRef, (response) => {
       // here we use Firebase's .val() method to parse our database info the way we want it
       const data = response.val();
-      console.log(data);
-      for (let key in data) {
-        console.log(data[key].name);
-        newState.push({ key: key, friend: data[key] });
+      const friends = data.friends;
+      console.log(friends);
+      for (let key in friends) {
+        // console.log(key);
+        // console.log(friends[key].name);
+        newState.push({ key: key, friend: friends[key] });
       }
       setSearchableList(newState);
     });
   }, []);
-  console.log(searchableList);
+  const handleClick =(e)=>{
+    console.log(e);
+
+  }
 
    return(
     <div className="friend__list">
-      <div className="nameContainer">
+      {/* <div className="nameContainer">
         <FaSearch id="search-icon" />
         <input
           className="nameContainer__input"
@@ -39,7 +45,18 @@ const WhosComingToParty=()=>{
           id="searchFriend__name"
           placeholder="Type name to search"
         />
-      </div>
+      </div> */}
+      {
+        searchableList.map((ele)=>(
+          <button key={ele.key} onClick={(e)=>{
+            console.log(ele.friend.allergies);
+            handleClick(e)}}>
+            {ele.friend.name}
+
+          </button>
+
+        ))
+      }
     </div>
 
 
