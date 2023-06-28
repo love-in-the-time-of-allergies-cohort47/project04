@@ -9,8 +9,9 @@ import {
 } from "firebase/database";
 
 const AddYourFriend = () => {
+
     const database = getDatabase(firebase);
-    const dbRef = ref(database);
+    const dbRef = ref(database,`friends`);
     const [name, setName] = useState("");
     const { allergyInfo, setAllergyInfo } = useContext(AllergiesList);
     const [friendInfo, setFriendInfo] = useState({
@@ -21,25 +22,23 @@ const AddYourFriend = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setFriendInfo(
-            {
-                // ...friendInfo, 
-                name: name,
+            {  
+                name: name, 
                 allergies: allergyInfo
             }
         )
     }
 
-    // const fbUpdate = 
-    useEffect(() => {
-        // push(dbRef, friendInfo)
-        console.log(friendInfo)
+    useEffect(() => {      
 
         if (friendInfo.name) {
-            push(dbRef, friendInfo)
+            push(dbRef, friendInfo )
             console.log(allergyInfo)
             setAllergyInfo([])
             setFriendInfo({})
-        }
+            setName("");
+        } 
+       // eslint-disable-next-line
     }, [friendInfo])
 
     const handleNameChange = (e) => {
