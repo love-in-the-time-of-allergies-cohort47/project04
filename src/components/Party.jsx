@@ -7,7 +7,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 const WhosComingToParty=()=>{
     const [searchableList, setSearchableList] = useState([]);
     const[partyAllergies, setPartyAllergies]= useState([]);
-
+    const uniqueAllergies = new Set(partyAllergies);
 
     useEffect(() => {
     const newState = [];
@@ -31,9 +31,11 @@ const WhosComingToParty=()=>{
     });
   }, []);
   const handleClick =(e)=>{
-    console.log(e);
+    
 
   }
+   console.log(partyAllergies)
+   console.log(uniqueAllergies);
 
    return(
     <div className="friend__list">
@@ -50,6 +52,7 @@ const WhosComingToParty=()=>{
         searchableList.map((ele)=>(
           <button key={ele.key} onClick={(e)=>{
             console.log(ele.friend.allergies);
+            setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
             handleClick(e)}}>
             {ele.friend.name}
 
