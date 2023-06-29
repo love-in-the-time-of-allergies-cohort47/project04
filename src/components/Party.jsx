@@ -2,12 +2,14 @@ import { FaSearch } from "react-icons/fa";
 import {useState, useEffect} from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
+import Recipes from "./recipes";
 
 
 const WhosComingToParty=()=>{
     const [searchableList, setSearchableList] = useState([]);
     const[partyAllergies, setPartyAllergies]= useState([]);
     const uniqueAllergies = new Set(partyAllergies);
+    const [showRecipes, setShowRecipes] = useState(false);
 
     useEffect(() => {
     const newState = [];
@@ -31,9 +33,13 @@ const WhosComingToParty=()=>{
     });
   }, []);
   const handleClick =(e)=>{
-    
-
   }
+
+  const handleSearchClick = () => {
+    setShowRecipes(true);
+  }
+
+
    console.log(partyAllergies)
    console.log(uniqueAllergies);
 
@@ -60,12 +66,19 @@ const WhosComingToParty=()=>{
 
         ))
       }
+      <button onClick={handleSearchClick}>Find me recipes!</button>
+      <div>
+        { showRecipes && <Recipes partyAllergies={[...uniqueAllergies]} /> }
+
+      </div>
+
     </div>
 
 
 
     )
 }
+
 
 const Party = () => {
 
