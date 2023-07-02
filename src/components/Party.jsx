@@ -1,8 +1,7 @@
-import { FaSearch } from "react-icons/fa";
 import {useState, useEffect} from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
-import Recipes from "./recipes";
+import Recipes from "./Recipes";
 
 
 const WhosComingToParty=()=>{
@@ -33,28 +32,16 @@ const WhosComingToParty=()=>{
     });
   }, []);
   const handleClick =(e)=>{
+    console.log(e);
   }
 
   const handleSearchClick = () => {
     setShowRecipes(true);
   }
-
-
-   console.log(partyAllergies)
-   console.log(uniqueAllergies);
-
    return(
     <div className="friend__list">
-      {/* <div className="nameContainer">
-        <FaSearch id="search-icon" />
-        <input
-          className="nameContainer__input"
-          type="text"
-          id="searchFriend__name"
-          placeholder="Type name to search"
-        />
-      </div> */}
       {
+        // all the friends from the database displayed as buttons
         searchableList.map((ele)=>(
           <button key={ele.key} onClick={(e)=>{
             console.log(ele.friend.allergies);
@@ -73,10 +60,7 @@ const WhosComingToParty=()=>{
       </div>
 
     </div>
-
-
-
-    )
+  )
 }
 
 
