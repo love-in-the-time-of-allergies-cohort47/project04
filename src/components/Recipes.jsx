@@ -7,13 +7,19 @@ const Recipes = ({ partyAllergies }) => {
   useEffect(() => {
     const apiKey = '0364971235b98e447450d193f7298b69'
     const appId = 'ea09d762'
-    partyAllergies.forEach((partyAllergy) => console.log(partyAllergy));
-    const apiParams = new URLSearchParams ({
-        type: "public",
-        app_id: appId,
-        app_key: apiKey,
+    const apiParams = new URLSearchParams();
+    apiParams.append('type', 'public')
+    apiParams.append('app_id', appId)
+    apiParams.append('app_key', apiKey)
+    partyAllergies.forEach((partyAllergy) => {
+      apiParams.append('health', partyAllergy)
+    })
 
-    });
+    // const apiParams = {
+    //     type: "public",
+    //     app_id: appId,
+    //     app_key: apiKey,
+    // }
 
     // const healthSearch = partyAllergies.join(" ` " `, health : ` " ` ")
     // // const healthSearch = partyAllergies.join('", health : "');
@@ -29,17 +35,10 @@ const Recipes = ({ partyAllergies }) => {
       url: 'https://api.edamam.com/api/recipes/v2',
       method: 'GET',
       // dataResponse: 'json',
-      params: apiParams
-        
-        // type: "public",
-        // app_id: appId,
-        // app_key: apiKey,
-        // // health: 'gluten-free',
-        // // health: 'vegan',
-        // dishType: 'main course',
-      ,
+      params: apiParams,
     }).then((response) => {
       console.log(response);
+      console.log(apiParams)
     })
   }, []);
   return (
