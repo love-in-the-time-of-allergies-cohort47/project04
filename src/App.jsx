@@ -12,6 +12,7 @@ import PartyDetails from './components/Party';
 import { Link } from 'react-router-dom';
 
 
+
 function App() {
   const [allergyInfo, setAllergyInfo] = useState([])
   const [addFriend, setAddFriend] =useState(true);
