@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 import RecipesCollection from "./RecipesCollection";
+import TypeOfParty from "./TypeOfParty";
 
 
 const WhosComingToParty = () => {
@@ -68,6 +69,9 @@ const WhosComingToParty = () => {
         ))
       }
       <button onClick={handleSearchClick}>Find me recipes!</button>
+      <div>
+        <TypeOfParty />
+      </div>
       <div>
         { showRecipes && <RecipesCollection partyAllergies={[...uniqueAllergies]} /> }
 

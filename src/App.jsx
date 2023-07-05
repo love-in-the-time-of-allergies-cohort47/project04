@@ -2,7 +2,7 @@
 import AddYourFriend from './components/AddYourFriend'
 // import ShowFriends from './components/ShowFriends'
 // import Party from './components/Party'
-import { AllergiesList } from './components/FriendInfoContext'
+import { AllergiesList, MealTypeList } from './components/FriendInfoContext'
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom';
@@ -14,14 +14,18 @@ import { Link } from 'react-router-dom';
 
 
 function App() {
+  const [mealTypeInfo, setMealTypeInfo] = useState([])
   const [allergyInfo, setAllergyInfo] = useState([])
   const [addFriend, setAddFriend] =useState(true);
 
   return (
     <BrowserRouter>
+    <MealTypeList.Provider
+      value={{ mealTypeInfo, setMealTypeInfo}}>
     <AllergiesList.Provider
       value={{ allergyInfo, setAllergyInfo }}
     >
+    
       <main>
         
         <Link to={`/`}>  
@@ -44,6 +48,7 @@ function App() {
 
       </main>
     </AllergiesList.Provider>
+    </MealTypeList.Provider>
     </BrowserRouter>
   )
 }
