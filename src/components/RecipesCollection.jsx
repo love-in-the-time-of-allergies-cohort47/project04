@@ -1,15 +1,18 @@
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Recipes = ({partyAllergies}) => {  
-  console.log(partyAllergies);
+const RecipesCollection = ({partyAllergies}) => {  
+  const [recipes,setRecipes]= useState([])
+  // console.log(partyAllergies);
   const healthParams = new URLSearchParams();
-  healthParams.append("type","public");
+  healthParams.append("type","any");
   healthParams.append("app_id","162a32d0");
   healthParams.append("app_key","65ebf6faccbb0d0d696eaefb2708b549");
   healthParams.append("q",'NOT REQUIRED');
-  console.log(healthParams);
+  // healthParams.append("random", true);
+  // console.log(healthParams);
     // const healthArray = ["dairy-free", "egg-free", "fish-free", "fodmap-free"];
     if(Array.isArray(partyAllergies)){
       partyAllergies.forEach((item)=>{
@@ -20,6 +23,7 @@ const Recipes = ({partyAllergies}) => {
     
 
     useEffect(()=>{
+      const recipeList = []
       axios({
 
         method: 'get',
@@ -27,20 +31,48 @@ const Recipes = ({partyAllergies}) => {
         params:healthParams    
       })
       .then(function (response) {
-      console.log(response.data.hits);
-  });
+        // const recipeHits= response.data.hits
+        console.log(response);
+        console.log(response.data['_links'].next.href);
+        const recipeObject = response.data.hits;
+        for(let key in recipeObject){
+          recipeList.push(recipeObject[key].recipe)
+          // console.log(recipeObject[key].recipe);
+        }
+        // console.log(recipeList.length);
+        setRecipes(recipeList)
 
+  });
+  
 
 
     },[])
+    console.log(recipes);
   return (
-    <div>Receipes</div>
+    <div>
+      <ul>
+        {
+          recipes.map((recipe, i)=>{
+            return(
+              <li key={i} style={{listStyle: "none"}}>
+                <h2>{recipe.label}</h2>
+              <img src={`${recipe.image}`} alt={`${recipe.label}`} />
+              </li>
+            )
+           
+          })
+
+      }
+
+      </ul>
+        <button>Next</button>  
+    </div>
   )
 }
-Recipes.prototype={
+RecipesCollection.prototype={
   partyAllergies:PropTypes.array.isRequired
 }
-export default Recipes
+export default RecipesCollection
 
 
     // params:{

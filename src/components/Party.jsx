@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
-import Recipes from "./Recipes";
+import RecipesCollection from "./RecipesCollection";
 
 
 const WhosComingToParty=()=>{
@@ -22,7 +22,7 @@ const WhosComingToParty=()=>{
       // here we use Firebase's .val() method to parse our database info the way we want it
       const data = response.val();
       const friends = data.friends;
-      console.log(friends);
+      // console.log(friends);
       for (let key in friends) {
         // console.log(key);
         // console.log(friends[key].name);
@@ -32,7 +32,7 @@ const WhosComingToParty=()=>{
     });
   }, []);
   const handleClick =(e)=>{
-    console.log(e);
+    // console.log(e);
   }
 
   const handleSearchClick = () => {
@@ -55,7 +55,7 @@ const WhosComingToParty=()=>{
       }
       <button onClick={handleSearchClick}>Find me recipes!</button>
       <div>
-        { showRecipes && <Recipes partyAllergies={[...uniqueAllergies]} /> }
+        { showRecipes && <RecipesCollection partyAllergies={[...uniqueAllergies]} /> }
 
       </div>
 
