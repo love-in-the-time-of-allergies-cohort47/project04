@@ -1,6 +1,6 @@
-import React from "react";
+
 import { allergens } from "./allergens";
-import { useState, useEffect, useContext } from "react";
+import {useContext } from "react";
 import { AllergiesList } from './FriendInfoContext'
 
 export default function AllergensList() {
@@ -9,6 +9,7 @@ export default function AllergensList() {
 
   const handleClick = (e ) => {
     e.preventDefault();
+    e.target.style.backgroundColor= "rgb(202, 150, 39)"
    const item =e.target.value;
    setAllergyInfo([...allergyInfo, item])  
   //  setAllergies([...allergies, item])
