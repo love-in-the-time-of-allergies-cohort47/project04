@@ -1,26 +1,37 @@
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
+import { MealTypeList } from "./FriendInfoContext";
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const RecipesCollection = ({partyAllergies}) => {  
+const RecipesCollection = ({partyAllergies}) => { 
+  const { mealTypeInfo} = useContext(MealTypeList); 
   const [recipes,setRecipes]= useState([])
   // console.log(partyAllergies);
-  const healthParams = new URLSearchParams();
-  healthParams.append("type","any");
-  healthParams.append("app_id","162a32d0");
-  healthParams.append("app_key","65ebf6faccbb0d0d696eaefb2708b549");
-  healthParams.append("q",'NOT REQUIRED');
-  // healthParams.append("random", true);
-  // console.log(healthParams);
+  const apiParams = new URLSearchParams();
+ apiParams.append("type","any");
+ apiParams.append("app_id","162a32d0");
+ apiParams.append("app_key","65ebf6faccbb0d0d696eaefb2708b549");
+ apiParams.append("q",'NOT REQUIRED');
+  // apiParams.append("random", true);
+  // console.log apiParams);
     // const healthArray = ["dairy-free", "egg-free", "fish-free", "fodmap-free"];
     if(Array.isArray(partyAllergies)){
       partyAllergies.forEach((item)=>{
-        healthParams.append("health", item)})
+       apiParams.append("health", item)})
+
+    }
+    if(Array.isArray(mealTypeInfo)){
+      mealTypeInfo.forEach((category)=>{
+        for(let key in category){
+          apiParams.append(key, category[key])
+        }
+      })
+     
 
     }
   
-    
+    console.log(apiParams);
 
     useEffect(()=>{
       const recipeList = []
@@ -28,12 +39,12 @@ const RecipesCollection = ({partyAllergies}) => {
 
         method: 'get',
         url: ' https://api.edamam.com/api/recipes/v2',
-        params:healthParams    
+        params :apiParams    
       })
       .then(function (response) {
         // const recipeHits= response.data.hits
         console.log(response);
-        console.log(response.data['_links'].next.href);
+        // console.log(response.data['_links'].next.href);
         const recipeObject = response.data.hits;
         for(let key in recipeObject){
           recipeList.push(recipeObject[key].recipe)
@@ -47,7 +58,9 @@ const RecipesCollection = ({partyAllergies}) => {
 
 
     },[])
-    console.log(recipes);
+  
+    console.log(mealTypeInfo);
+    console.log(partyAllergies);
   return (
     <div>
       <ul>
@@ -64,7 +77,7 @@ const RecipesCollection = ({partyAllergies}) => {
       }
 
       </ul>
-        <button>Next</button>  
+        {/* <button>Next</button>   */}
     </div>
   )
 }

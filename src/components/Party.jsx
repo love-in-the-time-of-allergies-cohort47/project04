@@ -41,8 +41,8 @@ const WhosComingToParty = () => {
   }
 
 
-  console.log(partyAllergies)
-  console.log(uniqueAllergies);
+  // console.log(partyAllergies);
+  // console.log(uniqueAllergies);
 
   return (
     <div className="friend__list">
