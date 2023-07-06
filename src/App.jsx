@@ -10,6 +10,7 @@ import { Routes, Route } from 'react-router-dom';
 import Party from './components/Party';
 import PartyDetails from './components/Party';
 import { Link } from 'react-router-dom';
+import '../style.scss'
 
 
 function App() {
