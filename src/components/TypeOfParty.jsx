@@ -1,6 +1,6 @@
 import { MealTypeList } from "./FriendInfoContext";
 import {useContext } from "react";
-import{mealTypesArray, dishTypeArray, cuisineType} from './allergens';
+import{mealTypesArray, dishTypeArray, cuisineType} from './appArrays';
 import RadioButtons from "./RadioButtons";
 
 const TypeOfParty = () => {

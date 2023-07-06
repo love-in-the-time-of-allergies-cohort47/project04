@@ -1,5 +1,5 @@
 
-import { allergens } from "./allergens";
+import { allergens } from "./appArrays";
 import {useContext } from "react";
 import { AllergiesList } from './FriendInfoContext'
 
