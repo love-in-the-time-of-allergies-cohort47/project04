@@ -4,18 +4,26 @@ GENERAL STYLING
 2. Organize the elements properly 
 3. Make footer stick to the bottom
 4. Import fonts and colours
-
+5. add background to content 
+6. Style submit buttons
 
 NAV BUTTONS STYLING
-1. Add "x" to handleClick remove /"" - jsx
-2. Add submenu - "Add Friend, see friends", "plan a party, see parties"
-3. On hover... svg change colour, on click/active...svg change colour
+1. HOME BUTTON in a set position on every page so you can go to landing page 
+2. Set z index to top
+3. On hover... svg change colour, on click/active...svg change colour 
 4. Background of content (white), transition slide or appear from left
 
 FORM STYLING
-1. Form buttons - toggle status true/false active/inactive etc to keep button backgground color onclick
-2. Form buttons - gaps, max-width 65%
-2. Flex column
+1. Form buttons - toggle status true/false active/inactive etc to keep button backgground color onclick / TOGGLE Class, remove background color and from database - PAM
+2. Form buttons - gaps, max-width
+3. Flex column
+4. Style radio buttons 
+
+RESULTS
+1. Format result image containers
+2. Style Title, recipe url
+3. Flex + Gap
+
 
 
 

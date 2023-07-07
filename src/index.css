@@ -69,11 +69,23 @@ button:focus-visible {
   }
 }
 
+/* * {
+  margin: 0;
+  padding: 0;
+  border: 1px solid red;
+} */
+
 body {
   background-color: #260755;
   display: flex;
   flex-direction: column;
   align-items: center
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin: 10px 50px;
 }
 
 h1,
@@ -82,10 +94,20 @@ h3,
 h4,
 h5 {
   font-family: 'Judson', sans-serif;
+  color: white;
 }
 
+form {
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
 
-
+footer {
+  width: 100%;
+  background-color: #242424;
+  color: white;
+  text-align: center;
+}
 
 #root {
   width: 100%;
