@@ -23,10 +23,7 @@ const WhosComingToParty = () => {
       // here we use Firebase's .val() method to parse our database info the way we want it
       const data = response.val();
       const friends = data.friends;
-      // console.log(friends);
       for (let key in friends) {
-        // console.log(key);
-        // console.log(friends[key].name);
         newState.push({ key: key, friend: friends[key] });
       }
       setSearchableList(newState);
@@ -40,21 +37,9 @@ const WhosComingToParty = () => {
     setShowRecipes(true);
   }
 
-
-  // console.log(partyAllergies);
-  // console.log(uniqueAllergies);
-
   return (
     <div className="friend__list">
-      {/* <div className="nameContainer">
-        <FaSearch id="search-icon" />
-        <input
-          className="nameContainer__input"
-          type="text"
-          id="searchFriend__name"
-          placeholder="Type name to search"
-        />
-      </div> */}
+    
       {
         searchableList.map((ele) => (
           <button key={ele.key} onClick={(e) => {
