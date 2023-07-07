@@ -1,37 +1,35 @@
 import { useEffect,useState,useContext } from 'react';
-import { MealTypeList } from "./FriendInfoContext";
+import { MealTypeList, UniqueAllergies } from "./FriendInfoContext";
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
-const RecipesCollection = ({partyAllergies}) => { 
+const RecipesCollection = () => { 
   const { mealTypeInfo} = useContext(MealTypeList); 
+  const { partyAllergies} = useContext(UniqueAllergies); 
   const [recipes,setRecipes]= useState([])
-  // console.log(partyAllergies);
+  const uniqueAllergies = new Set(partyAllergies);
+  
   const apiParams = new URLSearchParams();
- apiParams.append("type","any");
- apiParams.append("app_id","162a32d0");
- apiParams.append("app_key","65ebf6faccbb0d0d696eaefb2708b549");
- apiParams.append("q",'NOT REQUIRED');
+  apiParams.append("type","any");
+  apiParams.append("app_id","162a32d0");
+  apiParams.append("app_key","65ebf6faccbb0d0d696eaefb2708b549");
+  apiParams.append("q",'NOT REQUIRED');
   // apiParams.append("random", true);
   // console.log apiParams);
-    // const healthArray = ["dairy-free", "egg-free", "fish-free", "fodmap-free"];
-    if(Array.isArray(partyAllergies)){
-      partyAllergies.forEach((item)=>{
-       apiParams.append("health", item)})
-
-    }
-    if(Array.isArray(mealTypeInfo)){
+    // const healthArray = ["dairy-free", "egg-free", "fish-free", "fodmap-free"]
+  uniqueAllergies.forEach((item)=>{
+    apiParams.append("health", item)
+  })
+  if(Array.isArray(mealTypeInfo)){
       mealTypeInfo.forEach((category)=>{
         for(let key in category){
           apiParams.append(key, category[key])
         }
-      })
-     
-
-    }
+  })
+}
   
-    console.log(apiParams);
+console.log(apiParams);
+console.log(uniqueAllergies);
 
     useEffect(()=>{
       const recipeList = []
@@ -58,9 +56,7 @@ const RecipesCollection = ({partyAllergies}) => {
 
 
     },[])
-  
-    console.log(mealTypeInfo);
-    console.log(partyAllergies);
+
   return (
     <div>
       <ul>
@@ -84,7 +80,7 @@ const RecipesCollection = ({partyAllergies}) => {
 RecipesCollection.prototype={
   partyAllergies:PropTypes.array.isRequired
 }
-export default RecipesCollection
+export default RecipesCollection;
 
 
     // params:{

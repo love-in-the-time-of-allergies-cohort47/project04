@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
-import RecipesCollection from "./RecipesCollection";
-import TypeOfParty from "./TypeOfParty";
+import { UniqueAllergies } from "./FriendInfoContext";
+import { Link } from "react-router-dom";
 
 
 const WhosComingToParty = () => {
   const [searchableList, setSearchableList] = useState([]);
-  const [partyAllergies, setPartyAllergies] = useState([]);
-  const uniqueAllergies = new Set(partyAllergies);
-  const [showRecipes, setShowRecipes] = useState(false);
+  const {partyAllergies, setPartyAllergies} = useContext(UniqueAllergies);
+ 
 
   useEffect(() => {
     const newState = [];
@@ -29,14 +28,14 @@ const WhosComingToParty = () => {
       setSearchableList(newState);
     });
   }, []);
-  const handleClick =(e)=>{
-    // console.log(e);
-  }
+  // const handleClick =(e)=>{
+  //   // console.log(e);
+  // }
 
-  const handleSearchClick = () => {
-    setShowRecipes(true);
-  }
-
+  // const handleSearchClick = () => {
+  //   setShowRecipes(true);
+  // }
+  // console.log(uniqueAllergies);
   return (
     <div className="friend__list">
     
@@ -45,7 +44,6 @@ const WhosComingToParty = () => {
           <button key={ele.key} onClick={(e) => {
             console.log(ele.friend.allergies);
             setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
-            handleClick(e)
           }}>
             {ele.friend.name}
 
@@ -53,18 +51,10 @@ const WhosComingToParty = () => {
 
         ))
       }
-      <button onClick={handleSearchClick}>Find me recipes!</button>
-      <div>
-        <TypeOfParty />
-      </div>
-      <div>
-        { showRecipes && <RecipesCollection partyAllergies={[...uniqueAllergies]} /> }
-
-      </div>
-
+      <Link to={`/pickRecipe`}>
+        <button className='btn' >Pick Recipes !</button>
+      </Link>
     </div>
-
-
 
   )
 }

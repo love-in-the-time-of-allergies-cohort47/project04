@@ -1,17 +1,20 @@
 import { MealTypeList } from "./FriendInfoContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import './RadioButtons.css';
+
 
 const RadioButtons = ({radioButtonArray, category, updateMealTypeInfo}) => {
     const { mealTypeInfo} = useContext(MealTypeList);
+    const[meal, setMeal]= useState("");
 
 
     const handleChange = (e)=>{
         console.log(e.target);
-
-       updateMealTypeInfo([...mealTypeInfo,{
+        updateMealTypeInfo([...mealTypeInfo,{
         [e.target.name]:e.target.value
-       }])
+       }])       
     }
+    console.log(mealTypeInfo);
     
   return (
     <fieldset>
