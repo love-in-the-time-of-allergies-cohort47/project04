@@ -1,16 +1,17 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 import RecipesCollection from "./RecipesCollection";
+import TypeOfParty from "./TypeOfParty";
 
 
-const WhosComingToParty=()=>{
-    const [searchableList, setSearchableList] = useState([]);
-    const[partyAllergies, setPartyAllergies]= useState([]);
-    const uniqueAllergies = new Set(partyAllergies);
-    const [showRecipes, setShowRecipes] = useState(false);
+const WhosComingToParty = () => {
+  const [searchableList, setSearchableList] = useState([]);
+  const [partyAllergies, setPartyAllergies] = useState([]);
+  const uniqueAllergies = new Set(partyAllergies);
+  const [showRecipes, setShowRecipes] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
     const newState = [];
     // create a variable to hold our database details and set the connection to the database.
     const database = getDatabase(firebase);
@@ -38,15 +39,29 @@ const WhosComingToParty=()=>{
   const handleSearchClick = () => {
     setShowRecipes(true);
   }
-   return(
+
+
+  // console.log(partyAllergies);
+  // console.log(uniqueAllergies);
+
+  return (
     <div className="friend__list">
+      {/* <div className="nameContainer">
+        <FaSearch id="search-icon" />
+        <input
+          className="nameContainer__input"
+          type="text"
+          id="searchFriend__name"
+          placeholder="Type name to search"
+        />
+      </div> */}
       {
-        // all the friends from the database displayed as buttons
-        searchableList.map((ele)=>(
-          <button key={ele.key} onClick={(e)=>{
+        searchableList.map((ele) => (
+          <button key={ele.key} onClick={(e) => {
             console.log(ele.friend.allergies);
             setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
-            handleClick(e)}}>
+            handleClick(e)
+          }}>
             {ele.friend.name}
 
           </button>
@@ -55,39 +70,45 @@ const WhosComingToParty=()=>{
       }
       <button onClick={handleSearchClick}>Find me recipes!</button>
       <div>
+        <TypeOfParty />
+      </div>
+      <div>
         { showRecipes && <RecipesCollection partyAllergies={[...uniqueAllergies]} /> }
 
       </div>
 
     </div>
+
+
+
   )
 }
 
 
 const Party = () => {
 
-    return (
+  return (
     <div className="wrapper">
       <header>
         <h1>Plan A Party</h1>
       </header>
       <div>
         <label htmlFor="partyName">Party Name</label>
-        <input type="text" id="partyName" placeholder="Enter your party name"/>  
+        <input type="text" id="partyName" placeholder="Enter your party name" />
       </div>
       <div>
         <h2>
-            Who&apos;s Coming to party ?
+          Who's Coming to party ?
         </h2>
         <div className="contactList">
-            <WhosComingToParty/>
+          <WhosComingToParty />
         </div>
 
       </div>
     </div>
   );
 
-    
+
 };
 
 export default Party;
