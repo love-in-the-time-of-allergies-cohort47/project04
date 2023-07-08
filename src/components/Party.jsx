@@ -3,6 +3,7 @@ import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 import RecipesCollection from "./RecipesCollection";
 import TypeOfParty from "./TypeOfParty";
+import './Party.css'
 
 
 const WhosComingToParty = () => {
@@ -10,6 +11,7 @@ const WhosComingToParty = () => {
   const [partyAllergies, setPartyAllergies] = useState([]);
   const uniqueAllergies = new Set(partyAllergies);
   const [showRecipes, setShowRecipes] = useState(false);
+  const [isButtonActive, setButtonActive] = useState([]);
 
   useEffect(() => {
     const newState = [];
@@ -33,7 +35,15 @@ const WhosComingToParty = () => {
     });
   }, []);
   const handleClick =(e)=>{
-    // console.log(e);
+    
+    if (isButtonActive.includes(e)) {    
+      const delButtons = [...isButtonActive];
+      delButtons.splice(isButtonActive.indexOf(e), 1);
+      setButtonActive(delButtons)
+    } else {
+      setButtonActive([...isButtonActive, e]);
+    }
+    
   }
 
   const handleSearchClick = () => {
@@ -57,10 +67,12 @@ const WhosComingToParty = () => {
       </div> */}
       {
         searchableList.map((ele) => (
-          <button key={ele.key} onClick={(e) => {
+          <button key={ele.key}
+            className={isButtonActive.includes(ele.key) ? 'friendsSelected' : ''}
+            onClick={() => {
             console.log(ele.friend.allergies);
             setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
-            handleClick(e)
+            handleClick(ele.key)
           }}>
             {ele.friend.name}
 
