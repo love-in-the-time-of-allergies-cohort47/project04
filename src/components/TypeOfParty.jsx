@@ -14,6 +14,7 @@ const TypeOfParty = () => {
         radioBtns.forEach((radioButton)=>{
             if(radioButton.checked){
                 radioButton.checked=false;
+
             }
         })
     }
@@ -22,7 +23,6 @@ const TypeOfParty = () => {
         console.log('search button clicked');
         setShowRecipes(true);
         uncheckFunction();
-        setMealTypeInfo([]);
     }
     
     return (
@@ -32,18 +32,21 @@ const TypeOfParty = () => {
                     <RadioButtons
                     radioButtonArray={mealTypesArray}
                     category={'mealType'}
-                    updateMealTypeInfo={setMealTypeInfo}/>
+                    setShowRecipes={setShowRecipes}
+                    />
                     <RadioButtons
                     radioButtonArray={dishTypeArray}
                     category={'dishType'}
-                    updateMealTypeInfo={setMealTypeInfo}/>
+                    setShowRecipes={setShowRecipes}
+                    />
                     <RadioButtons
                     radioButtonArray={cuisineType}
                     category={'cuisineType'}
-                    updateMealTypeInfo={setMealTypeInfo}/>
+                    setShowRecipes={setShowRecipes}
+                    />
 
                     <button className="btn" type="submit"
->Search</button>
+                    >Search Recipes</button>
                     
                 </form>
             </div>

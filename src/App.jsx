@@ -14,7 +14,7 @@ import TypeOfParty from './components/TypeOfParty';
 
 
 function App() {
-  const [mealTypeInfo, setMealTypeInfo] = useState([]);
+  const [mealTypeInfo, setMealTypeInfo] = useState({});
   const [allergyInfo, setAllergyInfo] = useState([]);
   const [addFriend, setAddFriend] =useState(true);
   const [partyAllergies, setPartyAllergies] = useState([]);

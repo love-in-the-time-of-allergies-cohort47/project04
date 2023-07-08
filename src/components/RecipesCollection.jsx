@@ -4,7 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const RecipesCollection = () => { 
-  const { mealTypeInfo} = useContext(MealTypeList); 
+  const { mealTypeInfo,setMealTypeInfo} = useContext(MealTypeList); 
   const { partyAllergies} = useContext(UniqueAllergies); 
   const [recipes,setRecipes]= useState([])
   const uniqueAllergies = new Set(partyAllergies);
@@ -20,43 +20,35 @@ const RecipesCollection = () => {
   uniqueAllergies.forEach((item)=>{
     apiParams.append("health", item)
   })
-  if(Array.isArray(mealTypeInfo)){
-      mealTypeInfo.forEach((category)=>{
-        for(let key in category){
-          apiParams.append(key, category[key])
-        }
+  for(let key in mealTypeInfo){
+    apiParams.append(key, mealTypeInfo[key])
+  }
+useEffect(()=>{
+  const recipeList = []
+  axios({
+
+    method: 'get',
+    url: ' https://api.edamam.com/api/recipes/v2',
+    params :apiParams    
   })
-}
-  
-console.log(apiParams);
-console.log(uniqueAllergies);
+  .then(function (response) {
+    // const recipeHits= response.data.hits
+    console.log(response);
+    // console.log(response.data['_links'].next.href);
+    const recipeObject = response.data.hits;
+    for(let key in recipeObject){
+      recipeList.push(recipeObject[key].recipe)
+      // console.log(recipeObject[key].recipe);
+    }
+    // console.log(recipeList.length);
+    setRecipes(recipeList);
+    setMealTypeInfo({});
 
-    useEffect(()=>{
-      const recipeList = []
-      axios({
-
-        method: 'get',
-        url: ' https://api.edamam.com/api/recipes/v2',
-        params :apiParams    
-      })
-      .then(function (response) {
-        // const recipeHits= response.data.hits
-        console.log(response);
-        // console.log(response.data['_links'].next.href);
-        const recipeObject = response.data.hits;
-        for(let key in recipeObject){
-          recipeList.push(recipeObject[key].recipe)
-          // console.log(recipeObject[key].recipe);
-        }
-        // console.log(recipeList.length);
-        setRecipes(recipeList)
-
-  });
-  
+});
 
 
-    },[])
 
+  },[])
   return (
     <div>
       <ul>
