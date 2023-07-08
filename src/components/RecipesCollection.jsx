@@ -2,6 +2,7 @@ import { useEffect,useState,useContext } from 'react';
 import { MealTypeList, UniqueAllergies } from "./FriendInfoContext";
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import './RecipeCollection.css'
 
 const RecipesCollection = () => { 
   const { mealTypeInfo,setMealTypeInfo} = useContext(MealTypeList); 
@@ -50,12 +51,12 @@ useEffect(()=>{
 
   },[])
   return (
-    <div>
-      <ul>
+    <div className='recipeGallery'>
+      <ul className='flexContainer'>
         {
           recipes.map((recipe, i)=>{
             return(
-              <li key={i} style={{listStyle: "none"}}>
+              <li className='flexItem' key={i} style={{listStyle: "none"}}>
                 <h2>{recipe.label}</h2>
               <img src={`${recipe.image}`} alt={`${recipe.label}`} />
               </li>

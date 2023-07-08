@@ -4,7 +4,9 @@ import AddYourFriend from './components/AddYourFriend'
 // import Party from './components/Party'
 import { AllergiesList, MealTypeList, UniqueAllergies } from './components/FriendInfoContext'
 import { useState } from 'react'
-import './App.css'
+import './App.css';
+import './components/setUp.css';
+import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import Party from './components/Party';

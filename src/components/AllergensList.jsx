@@ -9,7 +9,8 @@ export default function AllergensList() {
 
   const handleClick = (e ) => {
     e.preventDefault();
-    e.target.style.backgroundColor= "rgb(202, 150, 39)"
+    e.target.style.backgroundColor= "rgb(211, 207, 230)";
+    e.target.style.color= "#000";
    const item =e.target.value;
    setAllergyInfo([...allergyInfo, item])  
   //  setAllergies([...allergies, item])
