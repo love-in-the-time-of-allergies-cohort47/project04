@@ -41,22 +41,30 @@ const RecipesCollection = ({partyAllergies}) => {
         url: ' https://api.edamam.com/api/recipes/v2',
         params :apiParams    
       })
-      .then(function (response) {
-        // const recipeHits= response.data.hits
-        console.log(response);
-        // console.log(response.data['_links'].next.href);
-        const recipeObject = response.data.hits;
-        for(let key in recipeObject){
-          recipeList.push(recipeObject[key].recipe)
-          // console.log(recipeObject[key].recipe);
-        }
-        // console.log(recipeList.length);
-        setRecipes(recipeList)
+      .then(function (response) {      
 
-  });
-  
+          if(response.data.count>0&&response.status===200){
 
-
+            // const recipeHits= response.data.hits
+            console.log("API response shows");
+            console.log(response);
+            // console.log(response.data['_links'].next.href);
+            const recipeObject = response.data.hits;
+            for (let key in recipeObject) {
+              recipeList.push(recipeObject[key].recipe)
+              // console.log(recipeObject[key].recipe);
+            }
+            // console.log(recipeList.length);
+            setRecipes(recipeList);
+          } else if(response.data.count===0){
+            alert("NO result meets request. Please try again.");
+            // {location.reload()};
+          } else {
+            console.log("SERIOUS ERROR");
+          }
+        }).catch(err => {
+          console.log(err);
+      });
     },[])
   
     console.log(mealTypeInfo);

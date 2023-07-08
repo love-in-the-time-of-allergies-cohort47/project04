@@ -10,7 +10,7 @@ export const allergens = [
   "lupine-free",
   "mollusk-free",
   "mustard-free",
-  "No-oil-added",
+  "no-oil-added",
   "peanut-free",
   "pork-free",
   "red-meat-free",
@@ -21,6 +21,8 @@ export const allergens = [
   "tree-nut-free",
   "wheat-free",
 ];
+
+
 
 export const mealTypesArray = [
   "breakfast",
