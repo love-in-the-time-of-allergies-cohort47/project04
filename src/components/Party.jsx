@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
-import RecipesCollection from "./RecipesCollection";
-import TypeOfParty from "./TypeOfParty";
-import './Party.css'
-
+import { UniqueAllergies } from "./FriendInfoContext";
+import { Link } from "react-router-dom";
+import './Party.css';
 
 const WhosComingToParty = () => {
   const [searchableList, setSearchableList] = useState([]);
-  const [partyAllergies, setPartyAllergies] = useState([]);
-  const uniqueAllergies = new Set(partyAllergies);
-  const [showRecipes, setShowRecipes] = useState(false);
+  const {partyAllergies, setPartyAllergies} = useContext(UniqueAllergies);
   const [isButtonActive, setButtonActive] = useState([]);
+ 
 
   useEffect(() => {
     const newState = [];
@@ -25,54 +23,55 @@ const WhosComingToParty = () => {
       // here we use Firebase's .val() method to parse our database info the way we want it
       const data = response.val();
       const friends = data.friends;
-      // console.log(friends);
       for (let key in friends) {
-        // console.log(key);
-        // console.log(friends[key].name);
         newState.push({ key: key, friend: friends[key] });
       }
       setSearchableList(newState);
     });
   }, []);
-  const handleClick =(e)=>{
+   useEffect(()=>{
+    setPartyAllergies([])
+    const allergensArray =[];
+    isButtonActive.forEach((indexNumber)=>{
+      console.log("inside useeffect " );
+      const personAllergy = searchableList[indexNumber].friend.allergies;
+      console.log(personAllergy);
+      allergensArray.push(...personAllergy)
+    })
+    setPartyAllergies(allergensArray)
     
-    if (isButtonActive.includes(e)) {    
+    
+    
+   
+
+
+   },[isButtonActive])
+  const handleClick= (e, index)=>{
+    console.log(index);
+    setButtonActive([...isButtonActive, index]);
+    if(isButtonActive.includes(index)){
+      console.log(true);
       const delButtons = [...isButtonActive];
-      delButtons.splice(isButtonActive.indexOf(e), 1);
+      delButtons.splice(isButtonActive.indexOf(index), 1);
       setButtonActive(delButtons)
-    } else {
-      setButtonActive([...isButtonActive, e]);
     }
-    
   }
 
-  const handleSearchClick = () => {
-    setShowRecipes(true);
-  }
-
-
-  // console.log(partyAllergies);
-  // console.log(uniqueAllergies);
-
+  console.log(partyAllergies);
+ 
   return (
     <div className="friend__list">
-      {/* <div className="nameContainer">
-        <FaSearch id="search-icon" />
-        <input
-          className="nameContainer__input"
-          type="text"
-          id="searchFriend__name"
-          placeholder="Type name to search"
-        />
-      </div> */}
+    
       {
-        searchableList.map((ele) => (
-          <button key={ele.key}
-            className={isButtonActive.includes(ele.key) ? 'friendsSelected' : ''}
-            onClick={() => {
-            console.log(ele.friend.allergies);
-            setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
-            handleClick(ele.key)
+        searchableList.map((ele, index) => (
+          <button key={ele.key} 
+          className={isButtonActive.includes(index) ? 'attendingParty' : ''}
+          onClick={(e) => {
+           handleClick(e, index)
+            if(ele.friend.allergies){
+              setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
+            }
+            
           }}>
             {ele.friend.name}
 
@@ -80,18 +79,10 @@ const WhosComingToParty = () => {
 
         ))
       }
-      <button onClick={handleSearchClick}>Find me recipes!</button>
-      <div>
-        <TypeOfParty />
-      </div>
-      <div>
-        { showRecipes && <RecipesCollection partyAllergies={[...uniqueAllergies]} /> }
-
-      </div>
-
+      <Link to={`/pickRecipe`}>
+        <button className='btn' >Pick Recipes !</button>
+      </Link>
     </div>
-
-
 
   )
 }
@@ -101,13 +92,13 @@ const Party = () => {
 
   return (
     <div className="wrapper">
-      <header>
+      {/* <header>
         <h1>Plan A Party</h1>
-      </header>
-      <div>
+      </header> */}
+      {/* <div>
         <label htmlFor="partyName">Party Name</label>
         <input type="text" id="partyName" placeholder="Enter your party name" />
-      </div>
+      </div> */}
       <div>
         <h2>
           Who's Coming to party ?

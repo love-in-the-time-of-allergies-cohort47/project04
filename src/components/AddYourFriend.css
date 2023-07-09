@@ -1,0 +1,33 @@
+form {
+    margin-top: 2.5em;
+}
+
+
+.save:hover {
+    transition: 0.2s;
+    border-color: #D3CFE6;
+    background-color: #D3CFE6;
+    color: #1a1a1a;
+}
+
+.save:focus,
+.save:focus-visible {
+    transition: 0.25s;
+    background-color: #D3CFE6;
+    color: #1a1a1a;
+}
+
+
+.textInput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+label {
+    margin: 0 0.2em;
+}
+
+.friendInput{
+    margin: 0 0.2em;
+}

@@ -1,0 +1,13 @@
+input[type="radio"]{
+    border:1px solid tomato;
+}
+fieldset{
+    display: flex;
+    border:1px solid tomato;
+    margin-bottom: 3em;
+}
+.radioDiv{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

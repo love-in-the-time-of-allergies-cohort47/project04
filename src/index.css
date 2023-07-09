@@ -1,4 +1,12 @@
+/* import fonts; vite needs fonts imported before any other statement*/
+@import url('https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Lato&display=swap');
+
+/* colour variables */
 :root {
+  --primary: #260755;
+  --secondary: #D3CFE6;
+  --tertiary: #871A3E;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,13 +20,32 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
 }
+
+/* typography */
+
+header h1 {
+  font-family: 'Judson', serif;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+
+/* base styles */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin: 10px 50px;
+}
+
 
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -43,27 +70,89 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
+  color: #D3CFE6;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+body {
+  background-color: #260755;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin: 10px 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Judson', serif;
+  color: white;
+}
+
+form p button{
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+
+footer {
+  width: 100%;
+  background-color: #242424;
+  color: white;
+  text-align: center;
+}
+
+#root {
+  width: 100%;
+  height: 80vh;
+  margin: auto 0;
+  padding: 0;
+}
+
+.contentSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.navBtn {
+  position: absolute;
+  gap: 200px;
+  display: flex;
+  flex-direction: column;
 }

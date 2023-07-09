@@ -1,44 +1,57 @@
-import './AllergensList.css'
-import { allergens } from "./allergens";
-import {useContext, useState } from "react";
-import { AllergiesList } from './FriendInfoContext'
+import { allergens } from "./appArrays";
+import { useContext, useEffect, useState } from "react";
+import { AllergiesList } from "./FriendInfoContext";
+import "./AllergensList.css";
 
 
 export default function AllergensList() {
   // const[allergies, setAllergies]=useState([])
-  const {allergyInfo, setAllergyInfo} = useContext(AllergiesList)
+  const { allergyInfo, setAllergyInfo } = useContext(AllergiesList);
   const [isButtonActive, setButtonActive] = useState([]);
 
-  const handleClick = (e ) => {
-    if(isButtonActive.includes(e)){
+  useEffect(() => {
+    setAllergyInfo([]);
+    const allergensArray = [];
+    isButtonActive.forEach((indexNumber) => {
+      console.log("inside useffect " + `${allergens[indexNumber]}`);
+      allergensArray.push(allergens[indexNumber]);
+    });
+    setAllergyInfo([...allergensArray]);
+  }, [isButtonActive]);
+
+  const handleClick = (e, index) => {
+    e.preventDefault();
+    setButtonActive([...isButtonActive, index]);
+    if (isButtonActive.includes(index)) {
       const delButtons = [...isButtonActive];
-      delButtons.splice(isButtonActive.indexOf(e), 1);
-      setButtonActive(delButtons)
-    }else {
-    setButtonActive([...isButtonActive, e]);
+      delButtons.splice(isButtonActive.indexOf(index), 1);
+      setButtonActive(delButtons);
     }
-    console.log(isButtonActive, e);
-    // e.preventDefault();
-     
-    // e.target.style.backgroundColor= "rgb(202, 150, 39)"
-   //  const item =e.target.value;
-   const item = allergens[e];
-   setAllergyInfo([...allergyInfo, item])  
-  //  setAllergies([...allergies, item])
   };
 
-
-
+  console.log(allergyInfo);
+  // setAllergyInfo([...allergyContainer]);
+  // if(allergyContainer.length !== 0){
+  //     console.log("this worked");
+  //     setAllergyInfo([...allergyContainer])
+  //   }
   return (
     <div>
-      {allergens.map((item, index) => (
-        <button value={item} onClick={() => handleClick(index)} key={index} 
-          className={isButtonActive.includes(index) ? 'allergySelected' : ''}
-        >
-          {item}
-        </button>
-      ))}
+      <p>Select their dietary restrictions:</p>
+      <div className="allergensButtons">
+        {allergens.map((item, index) => (
+          <button
+            value={item}
+            onClick={(e) => {
+              handleClick(e, index);
+            }}
+            key={index}
+            className={isButtonActive.includes(index) ? "allergySelected" : ""}
+          >
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
-

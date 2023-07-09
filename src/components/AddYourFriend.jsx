@@ -7,6 +7,7 @@ import {
     ref,
     push,
 } from "firebase/database";
+import './AddYourFriend.css';
 
 const AddYourFriend = () => {
 
@@ -46,15 +47,19 @@ const AddYourFriend = () => {
         setName(friendName)
     };
 
+    console.log(allergyInfo);
+
     return (
         <div className="wrapper">
             <form action="" onSubmit={handleSubmit}>
-                <label htmlFor="addAFriend" id="addAFriend">Add a Friend!</label>
-                <input id="addAFriend" type="text" onChange={handleNameChange} value={name} />
+                <div className="textInput">
+                    <label htmlFor="addAFriend" id="addAFriend">Add a Friend:</label>
+                    <input className="friendInput" id="addAFriend" type="text" onChange={handleNameChange} value={name} required/>
+                </div>
 
                 <AllergensList
                 />
-                <button type="submit">Save Friend</button>
+                <button className="save" type="submit">Save Friend</button>
             </form>
         </div>
     )
