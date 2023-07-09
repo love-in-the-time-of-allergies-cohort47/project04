@@ -61,7 +61,7 @@ const RecipesCollection = () => {
       // console.log(response.status);
       // console.log(response.data.count);
       // console.log(response.data['_links'].next.href);
-      setNextUrl(response.data["_links"].next.href);
+      // setNextUrl(response.data["_links"].next.href);
       if (response.data.count !==0 && response.status === 200) {
         setCount(response.data.count)
         const recipeObject = response.data.hits;
@@ -82,37 +82,30 @@ const RecipesCollection = () => {
 
   return (
     <div className="recipeGallery">
-      <button className="btn" onClick={handleClick}>Show More Results</button>
-      {mealTypeValues.length != 0 ? (
-        <div className="apiRadioParams">
-          <h3>Tags:</h3>
-          <ul>
-            {mealTypeValues.map((value, index) => {
-              console.log(value);
-              return (
-                <li key={index}>
-                  {value.charAt(0).toUpperCase() + value.slice(1)}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ) : (
-        ""
-      )}
+      {/* <p>Here are some dishes your guests might enjoy:</p>
+      <p>Here are some dishes your guests might enjoy:</p> */}
+      <p>
+        {recipes.length === 0
+          ? "Sorry! There are no results for your search. Please try again, select different options."
+          : "Here are some dishes your guests might enjoy:"}
+      </p>
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
           return (
             <li
-              className="flexItem"
-              key={i}
               onClick={() => {
                 window.open(recipes[i].url, "_blank");
               }}
+              className="flexItem"
+              key={i}
               style={{ listStyle: "none" }}
             >
-              <h2>{recipe.label}</h2>
-              <img src={`${recipe.image}`} alt={`${recipe.label}`} />
+              <div className="textContainer">
+                <h2>{recipe.label}</h2>
+              </div>
+              <div className="imageContainer">
+                <img src={`${recipe.image}`} alt={`${recipe.label}`} />
+              </div>
             </li>
           );
         })}

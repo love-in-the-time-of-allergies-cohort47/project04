@@ -1,17 +1,19 @@
 
 
-fieldset{
+fieldset {
     display: flex;
     border: 1px solid #871A3E;
     margin-bottom: 0em;
     flex-direction: column;
-    height:auto;
+    height:100%;
     align-items: flex-start;
     text-align: left;
 }
 
 .radioItem {
+    display: flex;
     flex-direction: row-reverse;
     margin-bottom: 0.2em;
+    justify-content: flex-end;
     text-transform: capitalize;
 }
