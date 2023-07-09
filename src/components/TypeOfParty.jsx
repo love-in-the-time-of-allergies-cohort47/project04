@@ -27,7 +27,7 @@ const TypeOfParty = () => {
     }
     
     return (
-        <>
+        <div>
             <form action="submit" onSubmit={handleSubmit}>
                 <div className="radioContainer">
                     <div className="buttonsContainer">
@@ -61,7 +61,7 @@ const TypeOfParty = () => {
             { showRecipes && <RecipesCollection/> }
 
             </div>
-        </>
+        </div>
     )
 }
 

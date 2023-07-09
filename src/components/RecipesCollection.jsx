@@ -43,12 +43,17 @@ const RecipesCollection = () => {
 
   return (
     <div className="recipeGallery">
+      <p>Here are some dishes your guests might enjoy:</p>
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
           return (
-            <li className="flexItem" key={i} style={{ listStyle: "none" }}>
-              <h2>{recipe.label}</h2>
-              <img src={`${recipe.image}`} alt={`${recipe.label}`} />
+            <li onClick={() => { window.open(recipes[i].url, '_blank'); }} className="flexItem" key={i} style={{ listStyle: "none" }}>
+              <div className="textContainer">
+                <h2>{recipe.label}</h2>
+              </div>
+              <div className="imageContainer">
+                <img src={`${recipe.image}`} alt={`${recipe.label}`} />
+              </div>
             </li>
           );
         })}
