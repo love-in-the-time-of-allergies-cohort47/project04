@@ -50,7 +50,7 @@ const AddYourFriend = () => {
         <div className="wrapper">
             <form action="" onSubmit={handleSubmit}>
                 <label htmlFor="addAFriend" id="addAFriend">Add a Friend!</label>
-                <input id="addAFriend" type="text" onChange={handleNameChange} value={name} />
+                <input id="addAFriend" type="text" onChange={handleNameChange} value={name} required/>
 
                 <AllergensList
                 />

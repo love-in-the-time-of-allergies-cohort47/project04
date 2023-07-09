@@ -1,28 +1,54 @@
 
 import { allergens } from "./appArrays";
-import {useContext } from "react";
-import { AllergiesList } from './FriendInfoContext'
+import {useContext,useEffect,useState} from "react";
+import { AllergiesList } from './FriendInfoContext';
+import './AllergensList.css';
 
 export default function AllergensList() {
   // const[allergies, setAllergies]=useState([])
-  const {allergyInfo, setAllergyInfo} = useContext(AllergiesList)
+  const {allergyInfo, setAllergyInfo} = useContext(AllergiesList);
+   const [isButtonActive, setButtonActive] = useState([]);
+   const [allergyContainer, setAllergyContainer] = useState([]);
 
-  const handleClick = (e ) => {
+
+   useEffect(()=>{
+    setAllergyContainer([])
+    const allergensArray =[];
+    isButtonActive.forEach((indexNumber)=>{
+      console.log("inside useeffect " +   `${allergens[indexNumber]}`);
+      allergensArray.push(allergens[indexNumber])
+    })
+    setAllergyContainer([...allergensArray])
+    
+   
+
+
+   },[isButtonActive])
+
+  const handleClick = (e, index ) => {
     e.preventDefault();
-    e.target.style.backgroundColor= "rgb(211, 207, 230)";
-    e.target.style.color= "#000";
-   const item =e.target.value;
-   setAllergyInfo([...allergyInfo, item])  
-  //  setAllergies([...allergies, item])
+    setButtonActive([...isButtonActive, index]);
+    if(isButtonActive.includes(index)){
+      const delButtons = [...isButtonActive];
+      delButtons.splice(isButtonActive.indexOf(index), 1);
+      setButtonActive(delButtons)
+    }
+
+    if(allergyContainer.length !== 0){
+      console.log("this worked");
+      setAllergyInfo([...allergyContainer])
+    }
   };
-
-
-
   return (
     <div>
       {allergens.map((item, index) => (
-        <button value={item} onClick={handleClick} key={index}>
-          {item}
+        <button value={item} onClick={(e)=>{
+              handleClick(e, index)
+        }} key={index}
+        className={isButtonActive.includes(index) ? 'allergySelected' : ''}
+        
+        >
+          {item.charAt(0).toUpperCase()+item.slice(1)}
         </button>
       ))}
     </div>

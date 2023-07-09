@@ -1,0 +1,10 @@
+.allergyButton{
+    border:1px solid tomato;
+    background-color:rgb(211, 207, 230) ;
+    color: black;
+}
+
+.allergySelected {
+    background-color: rgb(211, 207, 230);
+    color: black;
+}
