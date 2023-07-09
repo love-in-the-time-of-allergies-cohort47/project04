@@ -64,13 +64,13 @@ const Party = () => {
 
   return (
     <div className="wrapper">
-      <header>
+      {/* <header>
         <h1>Plan A Party</h1>
-      </header>
-      <div>
+      </header> */}
+      {/* <div>
         <label htmlFor="partyName">Party Name</label>
         <input type="text" id="partyName" placeholder="Enter your party name" />
-      </div>
+      </div> */}
       <div>
         <h2>
           Who's Coming to party ?
