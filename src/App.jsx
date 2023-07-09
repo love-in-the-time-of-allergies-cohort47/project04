@@ -37,7 +37,7 @@ function App() {
 
         </header>
         <Link to={`/`}>  
-        <button className='btn' onClick={()=>{
+        <button className='btnFriend' onClick={()=>{
           setAddFriend(true)
         }}>Add a Friend!</button>
         </Link>

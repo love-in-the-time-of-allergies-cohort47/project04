@@ -24,9 +24,6 @@
 }
 
 /* typography */
-html {
-  font-size: 125%;
-}
 
 header h1 {
   font-family: 'Judson', serif;
@@ -73,6 +70,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
+  color: #D3CFE6;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
@@ -103,11 +101,6 @@ button:focus-visible {
   }
 }
 
-/* * {
-  margin: 0;
-  padding: 0;
-  border: 1px solid red;
-} */
 
 body {
   background-color: #260755;
@@ -131,7 +124,7 @@ h5 {
   color: white;
 }
 
-form {
+form p button{
   font-family: 'Lato', sans-serif;
   color: white;
 }
@@ -145,8 +138,8 @@ footer {
 
 #root {
   width: 100%;
-  height: 50vh;
-  /* margin: auto 0; */
+  height: 80vh;
+  margin: auto 0;
   padding: 0;
 }
 
