@@ -46,6 +46,8 @@ const AddYourFriend = () => {
         setName(friendName)
     };
 
+    console.log(allergyInfo);
+
     return (
         <div className="wrapper">
             <form action="" onSubmit={handleSubmit}>

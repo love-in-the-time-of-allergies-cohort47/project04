@@ -36,7 +36,11 @@ const RadioButtons = ({radioButtonArray, category,setShowRecipes}) => {
     
   return (
     <fieldset>
-                    <legend>Choose a {`${category[0].toUpperCase()+category.slice(1)}`} </legend>
+                    <legend>Choose a {category === 'mealType' ? 'Meal Type':
+                    category === 'dishType'? 'Dish Type':
+                    category==='cuisineType'? 'Cuisine Type':
+                    ""
+                    } </legend>
                     {
                         radioButtonArray.map((meal, i)=>{                            
                             return(

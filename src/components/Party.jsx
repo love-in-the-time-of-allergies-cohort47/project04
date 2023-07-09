@@ -3,11 +3,12 @@ import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { UniqueAllergies } from "./FriendInfoContext";
 import { Link } from "react-router-dom";
-
+import './Party.css';
 
 const WhosComingToParty = () => {
   const [searchableList, setSearchableList] = useState([]);
   const {partyAllergies, setPartyAllergies} = useContext(UniqueAllergies);
+  const [isButtonActive, setButtonActive] = useState([]);
  
 
   useEffect(() => {
@@ -28,22 +29,49 @@ const WhosComingToParty = () => {
       setSearchableList(newState);
     });
   }, []);
-  // const handleClick =(e)=>{
-  //   // console.log(e);
-  // }
+   useEffect(()=>{
+    setPartyAllergies([])
+    const allergensArray =[];
+    isButtonActive.forEach((indexNumber)=>{
+      console.log("inside useeffect " );
+      const personAllergy = searchableList[indexNumber].friend.allergies;
+      console.log(personAllergy);
+      allergensArray.push(...personAllergy)
+    })
+    setPartyAllergies(allergensArray)
+    
+    
+    
+   
 
-  // const handleSearchClick = () => {
-  //   setShowRecipes(true);
-  // }
-  // console.log(uniqueAllergies);
+
+   },[isButtonActive])
+  const handleClick= (e, index)=>{
+    console.log(index);
+    setButtonActive([...isButtonActive, index]);
+    if(isButtonActive.includes(index)){
+      console.log(true);
+      const delButtons = [...isButtonActive];
+      delButtons.splice(isButtonActive.indexOf(index), 1);
+      setButtonActive(delButtons)
+    }
+  }
+
+  console.log(partyAllergies);
+ 
   return (
     <div className="friend__list">
     
       {
-        searchableList.map((ele) => (
-          <button key={ele.key} onClick={(e) => {
-            console.log(ele.friend.allergies);
-            setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
+        searchableList.map((ele, index) => (
+          <button key={ele.key} 
+          className={isButtonActive.includes(index) ? 'attendingParty' : ''}
+          onClick={(e) => {
+           handleClick(e, index)
+            if(ele.friend.allergies){
+              setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
+            }
+            
           }}>
             {ele.friend.name}
 
