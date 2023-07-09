@@ -10,41 +10,22 @@ const RecipesCollection = () => {
   const [recipes, setRecipes] = useState([]);
   const [mealTypeValues, setMealTypeValues] = useState([]);
   const uniqueAllergies = new Set(partyAllergies);
-  const[nextUrl, setNextUrl] =useState("");
-  const[count, setCount]= useState(0);
+  const [nextUrl, setNextUrl] = useState("");
+  const [count, setCount] = useState(0);
+  const[clickCount, setClickCount]= useState(0)
 
   const apiParams = new URLSearchParams();
   apiParams.append("type", "any");
   apiParams.append("app_id", "162a32d0");
   apiParams.append("app_key", "65ebf6faccbb0d0d696eaefb2708b549");
   apiParams.append("q", "NOT REQUIRED");
-  // apiParams.append("random", true);
+  // add the allergies to the api params
   uniqueAllergies.forEach((item) => {
     apiParams.append("health", item);
   });
   for (let key in mealTypeInfo) {
     apiParams.append(key, mealTypeInfo[key]);
   }
-  const handleClick = () => {};
-  // useEffect(() => {
-  //   const recipeList = [];
-  //   axios({
-  //     method: "get",
-  //     url: nextUrl,
-  //     // params: apiParams,
-  //   }).then(function (response) {
-  //     setNextUrl(response.data["_links"].next.href);
-  //     if (response.data.count !==0 && response.status === 200) {
-  //       setCount(response.data.count)
-  //       const recipeObject = response.data.hits;
-  //       for (let key in recipeObject) {
-  //         recipeList.push(recipeObject[key].recipe);
-  //       }
-  //       setRecipes(recipeList);
-  //       setMealTypeInfo({});
-  //     }
-  //   });
-  // }, [handleClick]);
   useEffect(() => {
     setMealTypeValues([...Object.values(mealTypeInfo)]);
     const recipeList = [];
@@ -52,24 +33,66 @@ const RecipesCollection = () => {
       method: "get",
       url: " https://api.edamam.com/api/recipes/v2",
       params: apiParams,
-    }).then(function (response) {
-      console.log(response);
-      // console.log(response.status);
-      // console.log(response.data.count);
-      // console.log(response.data['_links'].next.href);
-      // setNextUrl(response.data["_links"].next.href);
-      if (response.data.count !==0 && response.status === 200) {
-        setCount(response.data.count)
-        const recipeObject = response.data.hits;
-        for (let key in recipeObject) {
-          recipeList.push(recipeObject[key].recipe);
+    })
+      .then(function (response) {
+        console.log(response);
+        // console.log(response.status);
+        // console.log(response.data.count);
+        // console.log(response.data['_links'].next.href);
+        // setNextUrl(response.data["_links"].next.href);
+        if (response.data.count !== 0 && response.status === 200) {
+          if (response.data.count > 20) {
+            setNextUrl(response.data["_links"].next.href);
+          }
+          setCount(response.data.count);
+          const recipeObject = response.data.hits;
+          for (let key in recipeObject) {
+            recipeList.push(recipeObject[key].recipe);
+          }
+          setRecipes(recipeList);
+          setMealTypeInfo({});
         }
-        setRecipes(recipeList);
-        setMealTypeInfo({});
-      }
-    });
+      })
+      .catch((error) => {
+        console.error("Error fetching results:", error);
+      });
   }, []);
 
+  // handle click function to get more results when load more is clicked
+  const handleClick = () => {
+    setClickCount(clickCount +1);
+    const recipeList = [];
+    axios({
+      method: "get",
+      url: nextUrl,
+    })
+      .then(function (response) {
+        console.log(response);
+        console.log(count);
+        console.log(Math.floor(count/20));
+        if (response.data.count !== 0 && response.status === 200) {
+          
+          if (
+            response.data.count > 20 &&
+            response.data["_links"].next !== undefined
+          ) {
+            setCount(count - 20);
+            setNextUrl(response.data["_links"].next.href);
+            
+          }
+          setCount(response.data.count);
+          const recipeObject = response.data.hits;
+          for (let key in recipeObject) {
+            recipeList.push(recipeObject[key].recipe);
+          }
+          setRecipes(recipeList);
+          setMealTypeInfo({});
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching results:", error);
+      });
+  };
   return (
     <div className="recipeGallery">
       {/* <p>Here are some dishes your guests might enjoy:</p>
@@ -79,6 +102,15 @@ const RecipesCollection = () => {
           ? "Sorry! There are no results for your search. Please try again, select different options."
           : "Here are some dishes your guests might enjoy:"}
       </p>
+
+      {clickCount < Math.floor(count/20)? (
+        <span>
+          <button className="btn" onClick={handleClick}>
+            Load More !
+          </button>
+        </span>
+      ): "End of results make a new selection"}
+
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
           return (
