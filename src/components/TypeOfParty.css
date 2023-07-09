@@ -1,0 +1,18 @@
+form {
+    display: block;
+    width: 100%;
+}
+
+.radioContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.buttonsContainer {
+    width: 32%;
+}
+
+span {
+    margin-top: 2em;
+}

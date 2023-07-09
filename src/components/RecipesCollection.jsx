@@ -88,7 +88,12 @@ const RecipesCollection = () => {
           <h3>Tags:</h3>
           <ul>
             {mealTypeValues.map((value, index) => {
-              return <li key={index}>{value}</li>;
+              console.log(value);
+              return (
+                <li key={index}>
+                  {value.charAt(0).toUpperCase() + value.slice(1)}
+                </li>
+              );
             })}
           </ul>
         </div>
@@ -98,7 +103,14 @@ const RecipesCollection = () => {
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
           return (
-            <li className="flexItem" key={i} style={{ listStyle: "none" }}>
+            <li
+              className="flexItem"
+              key={i}
+              onClick={() => {
+                window.open(recipes[i].url, "_blank");
+              }}
+              style={{ listStyle: "none" }}
+            >
               <h2>{recipe.label}</h2>
               <img src={`${recipe.image}`} alt={`${recipe.label}`} />
             </li>

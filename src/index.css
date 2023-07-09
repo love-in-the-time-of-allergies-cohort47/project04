@@ -31,6 +31,10 @@ header h1 {
   color: var(--secondary);
 }
 
+/* html {
+  font-size: 125%;
+} */
+
 
 /* base styles */
 .wrapper {
@@ -124,9 +128,11 @@ h5 {
   color: white;
 }
 
-form p button{
+form,
+p, 
+button{
   font-family: 'Lato', sans-serif;
-  color: white;
+  color: #D3CFE6
 }
 
 footer {
@@ -136,12 +142,6 @@ footer {
   text-align: center;
 }
 
-#root {
-  width: 100%;
-  height: 80vh;
-  margin: auto 0;
-  padding: 0;
-}
 
 .contentSection {
   display: flex;

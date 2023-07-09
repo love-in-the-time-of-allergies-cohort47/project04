@@ -25,46 +25,41 @@ function App() {
 
   return (
     <BrowserRouter>
-      <MealTypeList.Provider value={{ mealTypeInfo, setMealTypeInfo }}>
-        <AllergiesList.Provider value={{ allergyInfo, setAllergyInfo }}>
-          <UniqueAllergies.Provider
-            value={{ partyAllergies, setPartyAllergies }}
-          >
-            <main>
-              <header>
-                <h1>Love In The Time Of Allergies</h1>
-              </header>
-              <Link to={`/`}>
-                <button
-                  className="btnFriend"
-                  onClick={() => {
-                    setAddFriend(true);
-                  }}
-                >
-                  Add a Friend!
-                </button>
-              </Link>
+    <MealTypeList.Provider
+      value={{ mealTypeInfo, setMealTypeInfo}}>
+    <AllergiesList.Provider
+      value={{ allergyInfo, setAllergyInfo }}
+    >
+    <UniqueAllergies.Provider
+    value={{ partyAllergies, setPartyAllergies }}>
+    
+      <main>
+        <header>
+          <h1>Love In The Time Of Allergies</h1>
 
-              <Link to={`/party`}>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    setAddFriend(false);
-                  }}
-                >
-                  Plan Your Party!
-                </button>
-              </Link>
+        </header>
+        <Link to={`/`}>  
+        <button className='btnFriend' onClick={()=>{
+          setAddFriend(true)
+        }}>Add a Friend!</button>
+        </Link>
+        
+        <Link to={`/party`}>
+        <button className='btn' onClick={()=>{
+          setAddFriend(false);
+        }}>Plan Your Party!</button>
+        </Link>
+        
+      <Routes>
+        <Route path="/party" element={ <Party/> } />
+        <Route path="/" element={ addFriend && <AddYourFriend/> } />
+        <Route path="/pickRecipe" element={ <TypeOfParty/> } />
+      </Routes>
 
-              <Routes>
-                <Route path="/party" element={<Party />} />
-                <Route path="/" element={addFriend && <AddYourFriend />} />
-                <Route path="/pickRecipe" element={<TypeOfParty />} />
-              </Routes>
-            </main>
-          </UniqueAllergies.Provider>
-        </AllergiesList.Provider>
-      </MealTypeList.Provider>
+      </main>
+    </UniqueAllergies.Provider>
+    </AllergiesList.Provider>
+    </MealTypeList.Provider>
     </BrowserRouter>
   );
 }

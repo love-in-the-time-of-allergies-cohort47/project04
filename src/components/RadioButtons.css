@@ -1,13 +1,17 @@
-input[type="radio"]{
-    border:1px solid tomato;
-}
+
+
 fieldset{
     display: flex;
-    border:1px solid tomato;
-    margin-bottom: 3em;
+    border: 1px solid #871A3E;
+    margin-bottom: 0em;
+    flex-direction: column;
+    height:auto;
+    align-items: flex-start;
+    text-align: left;
 }
-.radioDiv{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+
+.radioItem {
+    flex-direction: row-reverse;
+    margin-bottom: 0.2em;
+    text-transform: capitalize;
 }

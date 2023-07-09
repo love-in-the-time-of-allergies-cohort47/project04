@@ -59,7 +59,7 @@ const AddYourFriend = () => {
 
                 <AllergensList
                 />
-                <button className="save" type="submit">Save Friend</button>
+                <button className="save" type="submit">Save Friend!</button>
             </form>
         </div>
     )
