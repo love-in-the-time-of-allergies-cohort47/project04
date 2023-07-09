@@ -34,19 +34,20 @@ function App() {
       <main>
         <header>
           <h1>Love In The Time Of Allergies</h1>
-
+          <nav>
+          <Link to={`/`}>  
+          <button className='btnFriend' onClick={()=>{
+            setAddFriend(true)
+          }}>Add a Friend!</button>
+          </Link>
+          
+          <Link to={`/party`}>
+          <button className='btn' onClick={()=>{
+            setAddFriend(false);
+          }}>Plan Your Party!</button>
+          </Link>
+          </nav>
         </header>
-        <Link to={`/`}>  
-        <button className='btnFriend' onClick={()=>{
-          setAddFriend(true)
-        }}>Add a Friend!</button>
-        </Link>
-        
-        <Link to={`/party`}>
-        <button className='btn' onClick={()=>{
-          setAddFriend(false);
-        }}>Plan Your Party!</button>
-        </Link>
         
       <Routes>
         <Route path="/party" element={ <Party/> } />

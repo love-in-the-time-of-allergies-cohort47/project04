@@ -3,6 +3,7 @@ import {useContext, useState } from "react";
 import{mealTypesArray, dishTypeArray, cuisineType} from './appArrays';
 import RadioButtons from "./RadioButtons";
 import RecipesCollection from "./RecipesCollection";
+import './TypeOfParty.css'
 
 
 const TypeOfParty = () => {
@@ -27,29 +28,35 @@ const TypeOfParty = () => {
     
     return (
         <>
-            <div>
-                <form action="submit" onSubmit={handleSubmit}>
-                    <RadioButtons
-                    radioButtonArray={mealTypesArray}
-                    category={'mealType'}
-                    setShowRecipes={setShowRecipes}
-                    />
-                    <RadioButtons
-                    radioButtonArray={dishTypeArray}
-                    category={'dishType'}
-                    setShowRecipes={setShowRecipes}
-                    />
-                    <RadioButtons
-                    radioButtonArray={cuisineType}
-                    category={'cuisineType'}
-                    setShowRecipes={setShowRecipes}
-                    />
-
+            <form action="submit" onSubmit={handleSubmit}>
+                <div className="radioContainer">
+                    <div className="buttonsContainer">
+                        <RadioButtons
+                        radioButtonArray={mealTypesArray}
+                        category={'mealType'}
+                        setShowRecipes={setShowRecipes}
+                        />
+                    </div>
+                    <div className="buttonsContainer">
+                        <RadioButtons
+                        radioButtonArray={dishTypeArray}
+                        category={'dishType'}
+                        setShowRecipes={setShowRecipes}
+                        />
+                    </div>
+                    <div className="buttonsContainer">
+                        <RadioButtons
+                        radioButtonArray={cuisineType}
+                        category={'cuisineType'}
+                        setShowRecipes={setShowRecipes}
+                        />
+                    </div>
+                </div>
+                <span>
                     <button className="btn" type="submit"
                     >Search Recipes</button>
-                    
-                </form>
-            </div>
+                </span>
+            </form>
             <div>
             { showRecipes && <RecipesCollection/> }
 

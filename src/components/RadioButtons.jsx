@@ -36,25 +36,25 @@ const RadioButtons = ({radioButtonArray, category,setShowRecipes}) => {
     
   return (
     <fieldset>
-                    <legend>Choose a {category === 'mealType' ? 'Meal Type':
-                    category === 'dishType'? 'Dish Type':
-                    category==='cuisineType'? 'Cuisine Type':
-                    ""
-                    } </legend>
-                    {
-                        radioButtonArray.map((meal, i)=>{                            
-                            return(
-                            <div key={i} >
-                                <label htmlFor={meal}>{meal}</label>
-                                <input type="radio" 
-                                name={category}
-                                value={meal}
-                                id={meal}
-                                onChange={handleChange}/>
-                            </div>
-                            )
-                        })
-                    }
+      <legend>Choose a {category === 'mealType' ? 'Meal Type':
+      category === 'dishType'? 'Dish Type':
+      category==='cuisineType'? 'Cuisine Type':
+      ""
+      } </legend>
+      {
+          radioButtonArray.map((meal, i)=>{                            
+              return(
+              <div className="radioItem" key={i} >
+                  <label htmlFor={meal}>{meal}</label>
+                  <input type="radio" 
+                  name={category}
+                  value={meal}
+                  id={meal}
+                  onChange={handleChange}/>
+              </div>
+              )
+          })
+      }
     </fieldset>
   )
 }

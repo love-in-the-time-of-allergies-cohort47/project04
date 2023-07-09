@@ -61,27 +61,28 @@ const WhosComingToParty = () => {
  
   return (
     <div className="friend__list">
-    
-      {
-        searchableList.map((ele, index) => (
-          <button key={ele.key} 
-          className={isButtonActive.includes(index) ? 'attendingParty' : ''}
-          onClick={(e) => {
-           handleClick(e, index)
-            if(ele.friend.allergies){
-              setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
-            }
-            
-          }}>
-            {ele.friend.name}
+        {
+          searchableList.map((ele, index) => (
+            <button key={ele.key} 
+            className={isButtonActive.includes(index) ? 'attendingParty' : ''}
+            onClick={(e) => {
+            handleClick(e, index)
+              if(ele.friend.allergies){
+                setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
+              }
+              
+            }}>
+              {ele.friend.name}
 
-          </button>
+            </button>
 
-        ))
-      }
-      <Link to={`/pickRecipe`}>
-        <button className='btn' >Pick Recipes !</button>
-      </Link>
+          ))
+        }
+        <span>
+          <Link to={`/pickRecipe`}>
+            <button className='btn' >Plan the Menu!</button>
+          </Link>
+        </span>
     </div>
 
   )
@@ -100,9 +101,7 @@ const Party = () => {
         <input type="text" id="partyName" placeholder="Enter your party name" />
       </div> */}
       <div>
-        <h2>
-          Who's Coming to party ?
-        </h2>
+        <p>Select your guests:</p>
         <div className="contactList">
           <WhosComingToParty />
         </div>
