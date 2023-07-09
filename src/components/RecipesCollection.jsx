@@ -46,7 +46,9 @@ const RecipesCollection = () => {
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
           return (
-            <li className="flexItem" key={i} style={{ listStyle: "none" }}>
+            <li className="flexItem" 
+            onClick={() => {window.open(recipes[i].url, '_blank'); }}
+             key={i} style={{ listStyle: "none" }}>
               <h2>{recipe.label}</h2>
               <img src={`${recipe.image}`} alt={`${recipe.label}`} />
             </li>
