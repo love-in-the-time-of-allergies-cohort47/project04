@@ -13,27 +13,31 @@
 
 
 
-.flexContainer{
+.flexContainer {
     margin-top: 3em;
-    display:flex;  
-    justify-content:center;
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap:15px;
+    gap: 15px;
     background-color: #260755;
-    background-color: rgb(211, 207, 230);
+    border: 1px solid tomato;
+    margin-bottom: 3em;
 
 }
+
 .flexItem {
-    width:calc(100% / 3 - 15px);
+    width: calc(100% / 3 - 15px);
     border-radius: 5px;
-    background-color:#D3CFE6;
+    background-color: #D3CFE6;
 }
-.flexItem h2{
-    text-transform:capitalize;
+
+.flexItem h2 {
+    text-transform: capitalize;
     color: #871A3E;
     font-size: var(--step--4);
 }
-.flexItem img{
+
+.flexItem img {
     object-fit: cover;
     max-width: 100%;
     height: auto;
