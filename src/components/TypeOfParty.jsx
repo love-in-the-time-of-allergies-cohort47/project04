@@ -26,36 +26,33 @@ const TypeOfParty = () => {
     }
     
     return (
-        <>
-            <div>
-                <form action="submit" onSubmit={handleSubmit}>
-                    <RadioButtons
-                    radioButtonArray={mealTypesArray}
-                    category={'mealType'}
-                    setShowRecipes={setShowRecipes}
-                    />
-                    <RadioButtons
-                    radioButtonArray={dishTypeArray}
-                    category={'dishType'}
-                    setShowRecipes={setShowRecipes}
-                    />
-                    <RadioButtons
-                    radioButtonArray={cuisineType}
-                    category={'cuisineType'}
-                    setShowRecipes={setShowRecipes}
-                    />
+      <>
+        <div>
+          <form action="submit" onSubmit={handleSubmit}>
+            <RadioButtons
+              radioButtonArray={mealTypesArray}
+              category={"mealType"}
+              setShowRecipes={setShowRecipes}
+            />
+            <RadioButtons
+              radioButtonArray={dishTypeArray}
+              category={"dishType"}
+              setShowRecipes={setShowRecipes}
+            />
+            <RadioButtons
+              radioButtonArray={cuisineType}
+              category={"cuisineType"}
+              setShowRecipes={setShowRecipes}
+            />
 
-                    <button className="btn" type="submit"
-                    >Search Recipes</button>
-                    
-                </form>
-            </div>
-            <div>
-            { showRecipes && <RecipesCollection/> }
-
-            </div>
-        </>
-    )
+            <button className="btn" type="submit">
+              Search Recipes
+            </button>
+          </form>
+        </div>
+        <div>{showRecipes && <RecipesCollection />}</div>
+      </>
+    );
 }
 
 export default TypeOfParty;

@@ -42,7 +42,14 @@
 }
 
 .btn{
-  background-color: rgb(202, 77, 39);
-  color: black;
+  background-color: #871A3E;
+  color: #D3CFE6;
+  margin: 0 2em;
+}
 
+a .btnFriend{
+  background-color: #871A3E;
+  color: #D3CFE6;
+  padding: 0.6em 1.8em;
+    margin: 0 2em;
 }

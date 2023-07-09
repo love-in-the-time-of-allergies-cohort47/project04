@@ -36,18 +36,21 @@ export default function AllergensList() {
   //   }
   return (
     <div>
-      {allergens.map((item, index) => (
-        <button
-          value={item}
-          onClick={(e) => {
-            handleClick(e, index);
-          }}
-          key={index}
-          className={isButtonActive.includes(index) ? "allergySelected" : ""}
-        >
-          {item.charAt(0).toUpperCase() + item.slice(1)}
-        </button>
-      ))}
+      <p>Select their dietary restrictions:</p>
+      <div className="allergensButtons">
+        {allergens.map((item, index) => (
+          <button
+            value={item}
+            onClick={(e) => {
+              handleClick(e, index);
+            }}
+            key={index}
+            className={isButtonActive.includes(index) ? "allergySelected" : ""}
+          >
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

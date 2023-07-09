@@ -31,9 +31,12 @@ function App() {
             value={{ partyAllergies, setPartyAllergies }}
           >
             <main>
+              <header>
+                <h1>Love In The Time Of Allergies</h1>
+              </header>
               <Link to={`/`}>
                 <button
-                  className="btn"
+                  className="btnFriend"
                   onClick={() => {
                     setAddFriend(true);
                   }}
@@ -49,7 +52,7 @@ function App() {
                     setAddFriend(false);
                   }}
                 >
-                  Plan a Party
+                  Plan Your Party!
                 </button>
               </Link>
 
