@@ -12,7 +12,7 @@ const RecipesCollection = () => {
   const uniqueAllergies = new Set(partyAllergies);
   const [nextUrl, setNextUrl] = useState("");
   const [count, setCount] = useState(0);
-  const[clickCount, setClickCount]= useState(0)
+  const [clickCount, setClickCount] = useState(0);
 
   const apiParams = new URLSearchParams();
   apiParams.append("type", "any");
@@ -60,7 +60,7 @@ const RecipesCollection = () => {
 
   // handle click function to get more results when load more is clicked
   const handleClick = () => {
-    setClickCount(clickCount +1);
+    setClickCount(clickCount + 1);
     const recipeList = [];
     axios({
       method: "get",
@@ -69,16 +69,14 @@ const RecipesCollection = () => {
       .then(function (response) {
         console.log(response);
         console.log(count);
-        console.log(Math.floor(count/20));
+        console.log(Math.floor(count / 20));
         if (response.data.count !== 0 && response.status === 200) {
-          
           if (
             response.data.count > 20 &&
             response.data["_links"].next !== undefined
           ) {
             setCount(count - 20);
             setNextUrl(response.data["_links"].next.href);
-            
           }
           setCount(response.data.count);
           const recipeObject = response.data.hits;
@@ -103,13 +101,17 @@ const RecipesCollection = () => {
           : "Here are some dishes your guests might enjoy:"}
       </p>
 
-      {clickCount < Math.floor(count/20)? (
+      {clickCount < Math.floor(count / 20) ? (
         <span>
           <button className="btn" onClick={handleClick}>
             Load More !
           </button>
         </span>
-      ): "End of results make a new selection"}
+      ) : count === 0 ? (
+        ""
+      ) : (
+        "End of results make a new selection"
+      )}
 
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
