@@ -45,7 +45,6 @@ const allergens = [
   "tree-nut-free",
 ];
 
-console.log(allergens.length);
 function generateRandomNumbers() {
   const min = 0;
   const max = 11;
@@ -61,17 +60,14 @@ function generateRandomNumbers() {
 }
 
 let randomNumbersArray = generateRandomNumbers();
-console.log(randomNumbersArray);
    names.forEach((name) => {
     //  friendInfo.name = name;
-     console.log("*************");
      randomNumbersArray = generateRandomNumbers();
      randomNumbersArray.forEach((item) => {
-       console.log(allergens[item]);
     //    friendInfo.allergies.push(allergens[item]);
      });
      // push(dbRef, friendInfo )
-    //  console.log(friendInfo.allergies);
+   
 
     //  friendInfo.allergies = [];
    });

@@ -20,6 +20,20 @@
 }
 
 p {
-    margin-top: 2em;
+    margin-top: 2aem;
     margin-bottom: 0;
+}
+
+/* media queries */
+
+@media (max-width: 570px) {
+    .allergensButtons button{
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 570px) {
+    .allergensButtons button {
+        max-width: 100%;
+    }
 }

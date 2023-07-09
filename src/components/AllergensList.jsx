@@ -13,7 +13,6 @@ export default function AllergensList() {
     setAllergyInfo([]);
     const allergensArray = [];
     isButtonActive.forEach((indexNumber) => {
-      console.log("inside useffect " + `${allergens[indexNumber]}`);
       allergensArray.push(allergens[indexNumber]);
     });
     setAllergyInfo([...allergensArray]);
@@ -29,10 +28,10 @@ export default function AllergensList() {
     }
   };
 
-  console.log(allergyInfo);
+
   // setAllergyInfo([...allergyContainer]);
   // if(allergyContainer.length !== 0){
-  //     console.log("this worked");
+
   //     setAllergyInfo([...allergyContainer])
   //   }
   return (

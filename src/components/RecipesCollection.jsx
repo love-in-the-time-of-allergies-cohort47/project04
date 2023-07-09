@@ -8,7 +8,10 @@ const RecipesCollection = () => {
   const { mealTypeInfo, setMealTypeInfo } = useContext(MealTypeList);
   const { partyAllergies } = useContext(UniqueAllergies);
   const [recipes, setRecipes] = useState([]);
+  const [mealTypeValues, setMealTypeValues] = useState([]);
   const uniqueAllergies = new Set(partyAllergies);
+  const[nextUrl, setNextUrl] =useState("");
+  const[count, setCount]= useState(0);
 
   const apiParams = new URLSearchParams();
   apiParams.append("type", "any");
@@ -22,7 +25,28 @@ const RecipesCollection = () => {
   for (let key in mealTypeInfo) {
     apiParams.append(key, mealTypeInfo[key]);
   }
+  const handleClick = () => {};
+  // useEffect(() => {
+  //   const recipeList = [];
+  //   axios({
+  //     method: "get",
+  //     url: nextUrl,
+  //     // params: apiParams,
+  //   }).then(function (response) {
+  //     setNextUrl(response.data["_links"].next.href);
+  //     if (response.data.count !==0 && response.status === 200) {
+  //       setCount(response.data.count)
+  //       const recipeObject = response.data.hits;
+  //       for (let key in recipeObject) {
+  //         recipeList.push(recipeObject[key].recipe);
+  //       }
+  //       setRecipes(recipeList);
+  //       setMealTypeInfo({});
+  //     }
+  //   });
+  // }, [handleClick]);
   useEffect(() => {
+    setMealTypeValues([...Object.values(mealTypeInfo)]);
     const recipeList = [];
     axios({
       method: "get",
@@ -30,27 +54,48 @@ const RecipesCollection = () => {
       params: apiParams,
     }).then(function (response) {
       console.log(response);
+      // console.log(response.status);
+      // console.log(response.data.count);
       // console.log(response.data['_links'].next.href);
-      const recipeObject = response.data.hits;
-      for (let key in recipeObject) {
-        recipeList.push(recipeObject[key].recipe);
+      // setNextUrl(response.data["_links"].next.href);
+      if (response.data.count !==0 && response.status === 200) {
+        setCount(response.data.count)
+        const recipeObject = response.data.hits;
+        for (let key in recipeObject) {
+          recipeList.push(recipeObject[key].recipe);
+        }
+        setRecipes(recipeList);
+        setMealTypeInfo({});
       }
-      setRecipes(recipeList);
-      setMealTypeInfo({});
     });
   }, []);
-  console.log(apiParams);
 
   return (
     <div className="recipeGallery">
+      {/* <p>Here are some dishes your guests might enjoy:</p>
+      <p>Here are some dishes your guests might enjoy:</p> */}
+      <p>
+        {recipes.length === 0
+          ? "Sorry! There are no results for your search. Please try again, select different options."
+          : "Here are some dishes your guests might enjoy:"}
+      </p>
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
           return (
-            <li className="flexItem" 
-            onClick={() => {window.open(recipes[i].url, '_blank'); }}
-             key={i} style={{ listStyle: "none" }}>
-              <h2>{recipe.label}</h2>
-              <img src={`${recipe.image}`} alt={`${recipe.label}`} />
+            <li
+              onClick={() => {
+                window.open(recipes[i].url, "_blank");
+              }}
+              className="flexItem"
+              key={i}
+              style={{ listStyle: "none" }}
+            >
+              <div className="textContainer">
+                <h2>{recipe.label}</h2>
+              </div>
+              <div className="imageContainer">
+                <img src={`${recipe.image}`} alt={`${recipe.label}`} />
+              </div>
             </li>
           );
         })}

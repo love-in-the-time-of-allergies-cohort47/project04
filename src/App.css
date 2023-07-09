@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0;
   text-align: center;
 }
 
@@ -41,15 +41,36 @@
   color: #888;
 }
 
-.btn{
+.btn,
+.btnFriend{
   background-color: #871A3E;
   color: #D3CFE6;
   margin: 0 2em;
 }
 
-a .btnFriend{
-  background-color: #871A3E;
-  color: #D3CFE6;
-  padding: 0.6em 1.8em;
-    margin: 0 2em;
+
+main {
+  width: 100%;
+}
+
+
+/* media queries */
+
+@media (max-width: 615px) {
+  .btn,
+  .btnFriend{
+    margin: 0 0.5em;
+  }
+}
+
+@media (max-width: 445px) {
+  .mediaFlex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn,
+  .btnFriend {
+    margin: 0.25em 0;
+  }
 }

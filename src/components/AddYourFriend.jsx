@@ -34,7 +34,6 @@ const AddYourFriend = () => {
 
         if (friendInfo.name) {
             push(dbRef, friendInfo )
-            console.log(allergyInfo)
             setAllergyInfo([])
             setFriendInfo({})
             setName("");
@@ -47,7 +46,7 @@ const AddYourFriend = () => {
         setName(friendName)
     };
 
-    console.log(allergyInfo);
+  
 
     return (
         <div className="wrapper">
@@ -59,7 +58,7 @@ const AddYourFriend = () => {
 
                 <AllergensList
                 />
-                <button className="save" type="submit">Save Friend</button>
+                <button className="save" type="submit">Save Friend!</button>
             </form>
         </div>
     )

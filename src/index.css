@@ -3,10 +3,6 @@
 
 /* colour variables */
 :root {
-  --primary: #260755;
-  --secondary: #D3CFE6;
-  --tertiary: #871A3E;
-
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -25,20 +21,22 @@
 
 /* typography */
 
+html {
+  font-size: 125%;
+}
+
 header h1 {
   font-family: 'Judson', serif;
   font-weight: 700;
   color: var(--secondary);
 }
 
-
-/* base styles */
-.wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  margin: 10px 50px;
+html {
+  font-size: 125%;
 }
 
+
+/* base styles */
 
 a {
   font-weight: 500;
@@ -98,6 +96,7 @@ button:focus-visible {
 
   button {
     background-color: #f9f9f9;
+    color: #213547;;
   }
 }
 
@@ -112,7 +111,7 @@ body {
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  margin: 10px 50px;
+  width: 90%;
 }
 
 h1,
@@ -124,9 +123,11 @@ h5 {
   color: white;
 }
 
-form p button{
+form,
+p, 
+button{
   font-family: 'Lato', sans-serif;
-  color: white;
+  color: #D3CFE6
 }
 
 footer {
@@ -136,12 +137,6 @@ footer {
   text-align: center;
 }
 
-#root {
-  width: 100%;
-  height: 80vh;
-  margin: auto 0;
-  padding: 0;
-}
 
 .contentSection {
   display: flex;
