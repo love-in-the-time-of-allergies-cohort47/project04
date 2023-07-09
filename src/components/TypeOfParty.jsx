@@ -21,7 +21,7 @@ const TypeOfParty = () => {
     }
     const handleSubmit =(e)=>{
         e.preventDefault();
-        // console.log('search button clicked');
+
         setShowRecipes(true);
         uncheckFunction();
     }

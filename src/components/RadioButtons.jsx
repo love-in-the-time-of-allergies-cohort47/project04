@@ -13,9 +13,6 @@ const RadioButtons = ({radioButtonArray, category,setShowRecipes}) => {
 
 
     const handleChange = (e)=>{
-      // console.log(e.target.name);
-      // console.log(e.target.value);
-      // console.log(e.target.checked);
         switch(e.target.name){
           case'mealType':
          setMealTypeInfo({...mealTypeInfo,

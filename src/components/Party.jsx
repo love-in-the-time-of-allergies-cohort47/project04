@@ -33,9 +33,7 @@ const WhosComingToParty = () => {
     setPartyAllergies([])
     const allergensArray =[];
     isButtonActive.forEach((indexNumber)=>{
-      console.log("inside useeffect " );
       const personAllergy = searchableList[indexNumber].friend.allergies;
-      console.log(personAllergy);
       if(personAllergy){
         allergensArray.push(...personAllergy);
       }
@@ -50,17 +48,14 @@ const WhosComingToParty = () => {
 
    },[isButtonActive])
   const handleClick= (e, index)=>{
-    console.log(index);
     setButtonActive([...isButtonActive, index]);
     if(isButtonActive.includes(index)){
-      console.log(true);
       const delButtons = [...isButtonActive];
       delButtons.splice(isButtonActive.indexOf(index), 1);
       setButtonActive(delButtons)
     }
   }
 
-  console.log(partyAllergies);
  
   return (
     <div className="friend__list">
