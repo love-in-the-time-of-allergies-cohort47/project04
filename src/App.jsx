@@ -16,6 +16,8 @@ import { Routes, Route } from "react-router-dom";
 import Party from "./components/Party";
 import { Link } from "react-router-dom";
 import TypeOfParty from "./components/TypeOfParty";
+import Footer from "./components/Footer";
+
 
 function App() {
   const [mealTypeInfo, setMealTypeInfo] = useState({});
@@ -32,7 +34,7 @@ function App() {
     >
     <UniqueAllergies.Provider
     value={{ partyAllergies, setPartyAllergies }}>
-    
+
       <main>
         <header>
           <div className='wrapper'>
@@ -60,8 +62,8 @@ function App() {
         <Route path="/" element={ addFriend && <AddYourFriend/> } />
         <Route path="/pickRecipe" element={ <TypeOfParty/> } />
       </Routes>
-
       </main>
+      <Footer/>
     </UniqueAllergies.Provider>
     </AllergiesList.Provider>
     </MealTypeList.Provider>
