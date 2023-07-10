@@ -36,11 +36,6 @@ const RecipesCollection = () => {
       params: apiParams,
     })
       .then(function (response) {
-        console.log(response);
-        // console.log(response.status);
-        // console.log(response.data.count);
-        // console.log(response.data['_links'].next.href);
-        // setNextUrl(response.data["_links"].next.href);
         if (response.data.count !== 0 && response.status === 200) {
           if (response.data.count > 20) {
             setNextUrl(response.data["_links"].next.href);
