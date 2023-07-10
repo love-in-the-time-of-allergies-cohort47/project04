@@ -80,8 +80,8 @@ const RecipesCollection = () => {
       .then(function (response) {
         scrollToTop();
         focusRef.current.blur();
-        console.log(response);
-        console.log(count);
+        // console.log(response);
+        // console.log(count);
         console.log(Math.floor(count / 20));
         if (response.data.count !== 0 && response.status === 200) {
           if (
@@ -144,6 +144,7 @@ const RecipesCollection = () => {
       ) : count === 0 ? (
         ""
       ) : (
+        // eslint-disable-next-line react/no-unescaped-entities
         <p>You've reached the end of results. For more options, please try again with different selections.</p>
       )}
       {/* <button>Next</button>   */}
