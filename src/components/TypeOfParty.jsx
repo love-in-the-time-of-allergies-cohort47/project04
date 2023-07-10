@@ -27,42 +27,41 @@ const TypeOfParty = () => {
     }
     
     return (
-        <div>
-            <form action="submit" onSubmit={handleSubmit}>
-                <div className="radioContainer">
-                    <div className="buttonsContainer">
-                        <RadioButtons
-                        radioButtonArray={mealTypesArray}
-                        category={'mealType'}
-                        setShowRecipes={setShowRecipes}
-                        />
-                    </div>
-                    <div className="buttonsContainer">
-                        <RadioButtons
-                        radioButtonArray={dishTypeArray}
-                        category={'dishType'}
-                        setShowRecipes={setShowRecipes}
-                        />
-                    </div>
-                    <div className="buttonsContainer">
-                        <RadioButtons
-                        radioButtonArray={cuisineType}
-                        category={'cuisineType'}
-                        setShowRecipes={setShowRecipes}
-                        />
-                    </div>
-                </div>
-                <span>
-                    <button className="btn" type="submit"
-                    >Search Recipes</button>
-                </span>
-            </form>
-            <div>
-            { showRecipes && <RecipesCollection/> }
-
+      <div>
+        <form action="submit" onSubmit={handleSubmit}>
+          <div className="radioContainer">
+            <div className="buttonsContainer">
+              <RadioButtons
+                radioButtonArray={mealTypesArray}
+                category={"mealType"}
+                setShowRecipes={setShowRecipes}
+              />
             </div>
-        </div>
-    )
+            <div className="buttonsContainer">
+              <RadioButtons
+                radioButtonArray={dishTypeArray}
+                category={"dishType"}
+                setShowRecipes={setShowRecipes}
+              />
+            </div>
+            <div className="buttonsContainer">
+              <RadioButtons
+                radioButtonArray={cuisineType}
+                category={"cuisineType"}
+                setShowRecipes={setShowRecipes}
+              />
+            </div>
+          </div>
+          <span>
+            <button className="btn" type="submit">
+              Search Recipes
+            </button>
+          </span>
+        </form>
+        
+        <div>{showRecipes && <RecipesCollection />}</div>
+      </div>
+    );
 }
 
 export default TypeOfParty;
