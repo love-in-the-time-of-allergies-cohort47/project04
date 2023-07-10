@@ -32,7 +32,7 @@ p {
     }
 }
 
-@media (max-width: 570px) {
+@media (max-width: 385px) {
     .allergensButtons button {
         max-width: 100%;
     }
