@@ -78,7 +78,7 @@ const WhosComingToParty = () => {
         }
         <span>
           <Link to={`/pickRecipe`}>
-            <button className='btn' >Plan the Menu!</button>
+            <button className='btn menuButton' >Plan the Menu!</button>
           </Link>
         </span>
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { MealTypeList, UniqueAllergies } from "./FriendInfoContext";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -62,10 +62,11 @@ const RecipesCollection = () => {
   // handle click function to get more results when load more is clicked
   const scrollToTop = () => {
     window.scrollTo({
-      top: 900,
+      top: 800,
       behavior: "smooth"
     })
-  }
+  };
+  const buttonRef = useRef(null)
   
   const handleClick = () => {
     setClickCount(clickCount + 1);
@@ -75,7 +76,8 @@ const RecipesCollection = () => {
       url: nextUrl,
     })
       .then(function (response) {
-        scrollToTop()
+        scrollToTop();
+        buttonRef.current.blur();
         console.log(response);
         console.log(count);
         console.log(Math.floor(count / 20));
@@ -133,7 +135,7 @@ const RecipesCollection = () => {
       </ul>
       {clickCount < Math.floor(count / 20) ? (
         <span>
-          <button className="btn" onClick={handleClick}>
+          <button className="moreButton" onClick={handleClick} ref={buttonRef}>
             Load More!
           </button>
         </span>

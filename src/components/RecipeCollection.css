@@ -35,6 +35,7 @@
 
 }
 
+
 .textContainer {
     max-width: 85%;
     margin-top: 2em;
@@ -50,3 +51,16 @@
     max-width: 1280px;
 }
 
+
+.moreButton:hover {
+    transition: 0.2s;
+    border-color: #D3CFE6;
+    background-color: #D3CFE6;
+    color: #1a1a1a;
+}
+
+.moreButton:focus {
+    transition: 0.25s;
+    background-color: #D3CFE6;
+    color: #1a1a1a;
+}
