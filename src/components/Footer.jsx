@@ -3,7 +3,7 @@
 const Footer = () => {
     return (
         <footer>
-            <p>Created by Mary Solidum, Minha Lee, Jonathan Phillips, Pam Lu at Juno College</p>
+            <p>Created by Minha Lee, Pam Lu, Jonathan Phillips, and Mary Solidum at Juno College</p>
         </footer>
     )
 };

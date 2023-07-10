@@ -14,6 +14,7 @@ const RecipesCollection = () => {
   const [count, setCount] = useState(0);
   const [clickCount, setClickCount] = useState(0);
 
+  
   const apiParams = new URLSearchParams();
   apiParams.append("type", "any");
   apiParams.append("app_id", "162a32d0");
@@ -59,6 +60,13 @@ const RecipesCollection = () => {
   }, []);
 
   // handle click function to get more results when load more is clicked
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 900,
+      behavior: "smooth"
+    })
+  }
+  
   const handleClick = () => {
     setClickCount(clickCount + 1);
     const recipeList = [];
@@ -67,6 +75,7 @@ const RecipesCollection = () => {
       url: nextUrl,
     })
       .then(function (response) {
+        scrollToTop()
         console.log(response);
         console.log(count);
         console.log(Math.floor(count / 20));
@@ -97,21 +106,9 @@ const RecipesCollection = () => {
       <p>Here are some dishes your guests might enjoy:</p> */}
       <p>
         {recipes.length === 0
-          ? "Sorry! There are no results for your search. Please try again, select different options."
+          ? "Sorry! There are no results for your search. Please try again with different selections."
           : "Here are some dishes your guests might enjoy:"}
       </p>
-
-      {clickCount < Math.floor(count / 20) ? (
-        <span>
-          <button className="btn" onClick={handleClick}>
-            Load More !
-          </button>
-        </span>
-      ) : count === 0 ? (
-        ""
-      ) : (
-        "End of results make a new selection"
-      )}
 
       <ul className="flexContainer">
         {recipes.map((recipe, i) => {
@@ -134,6 +131,17 @@ const RecipesCollection = () => {
           );
         })}
       </ul>
+      {clickCount < Math.floor(count / 20) ? (
+        <span>
+          <button className="btn" onClick={handleClick}>
+            Load More!
+          </button>
+        </span>
+      ) : count === 0 ? (
+        ""
+      ) : (
+        <p>You've reached the end of results. For more options, please try again with different selections.</p>
+      )}
       {/* <button>Next</button>   */}
     </div>
   );
