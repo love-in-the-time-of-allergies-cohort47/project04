@@ -33,3 +33,11 @@ span {
     display: block;
     margin-top: 1.5em;
 }
+
+/* media queries */
+
+@media (max-width: 500px) {
+    .friend__list button {
+        max-width: 100%;
+    }
+}

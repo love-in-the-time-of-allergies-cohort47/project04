@@ -16,13 +16,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
 
+.flexItem:hover {
+    border-color: #646cff;
+}
+
+.flexItem:focus{
+    border-color: #646cff;
 }
 
 .flexItem h2{
     text-transform:capitalize;
     color: #871A3E;
-    font-size: var(--step--4);
+    font-size: 1.1em;
     margin: 0;
 }
 
@@ -63,4 +73,18 @@
     transition: 0.25s;
     background-color: #D3CFE6;
     color: #1a1a1a;
+}
+
+/* media queries */
+
+@media (max-width: 1200px) {
+    .flexItem {
+        width: 40%;
+    }
+}
+
+@media (max-width: 600px) {
+    .flexItem {
+        width: 80%;
+    }
 }

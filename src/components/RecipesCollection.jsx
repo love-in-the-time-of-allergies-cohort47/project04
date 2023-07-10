@@ -60,13 +60,15 @@ const RecipesCollection = () => {
   }, []);
 
   // handle click function to get more results when load more is clicked
+  const buttonRef = useRef(null)
   const scrollToTop = () => {
     window.scrollTo({
-      top: 800,
-      behavior: "smooth"
+      top: buttonRef.current.offsetTop,
+      behavior: "smooth",
     })
   };
-  const buttonRef = useRef(null)
+
+  const focusRef = useRef(null)
   
   const handleClick = () => {
     setClickCount(clickCount + 1);
@@ -77,7 +79,7 @@ const RecipesCollection = () => {
     })
       .then(function (response) {
         scrollToTop();
-        buttonRef.current.blur();
+        focusRef.current.blur();
         console.log(response);
         console.log(count);
         console.log(Math.floor(count / 20));
@@ -103,7 +105,7 @@ const RecipesCollection = () => {
       });
   };
   return (
-    <div className="recipeGallery">
+    <div className="recipeGallery" ref={buttonRef}>
       {/* <p>Here are some dishes your guests might enjoy:</p>
       <p>Here are some dishes your guests might enjoy:</p> */}
       <p>
@@ -135,7 +137,7 @@ const RecipesCollection = () => {
       </ul>
       {clickCount < Math.floor(count / 20) ? (
         <span>
-          <button className="moreButton" onClick={handleClick} ref={buttonRef}>
+          <button className="moreButton" onClick={handleClick} ref={focusRef}>
             Load More!
           </button>
         </span>
