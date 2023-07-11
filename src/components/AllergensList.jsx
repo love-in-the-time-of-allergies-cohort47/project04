@@ -1,30 +1,56 @@
+import { allergens } from "./appArrays";
+import { useContext, useEffect, useState } from "react";
+import { AllergiesList } from "./FriendInfoContext";
+import "./AllergensList.css";
 
-import { allergens } from "./allergens";
-import {useContext } from "react";
-import { AllergiesList } from './FriendInfoContext'
 
 export default function AllergensList() {
   // const[allergies, setAllergies]=useState([])
-  const {allergyInfo, setAllergyInfo} = useContext(AllergiesList)
+  const { allergyInfo, setAllergyInfo } = useContext(AllergiesList);
+  const [isButtonActive, setButtonActive] = useState([]);
 
-  const handleClick = (e ) => {
+  useEffect(() => {
+    setAllergyInfo([]);
+    const allergensArray = [];
+    isButtonActive.forEach((indexNumber) => {
+      allergensArray.push(allergens[indexNumber]);
+    });
+    setAllergyInfo([...allergensArray]);
+  }, [isButtonActive]);
+
+  const handleClick = (e, index) => {
     e.preventDefault();
-    e.target.style.backgroundColor= "rgb(202, 150, 39)"
-   const item =e.target.value;
-   setAllergyInfo([...allergyInfo, item])  
-  //  setAllergies([...allergies, item])
+    setButtonActive([...isButtonActive, index]);
+    if (isButtonActive.includes(index)) {
+      const delButtons = [...isButtonActive];
+      delButtons.splice(isButtonActive.indexOf(index), 1);
+      setButtonActive(delButtons);
+    }
   };
 
 
+  // setAllergyInfo([...allergyContainer]);
+  // if(allergyContainer.length !== 0){
 
+  //     setAllergyInfo([...allergyContainer])
+  //   }
   return (
     <div>
-      {allergens.map((item, index) => (
-        <button value={item} onClick={handleClick} key={index}>
-          {item}
-        </button>
-      ))}
+      <p>Select their dietary restrictions:</p>
+      <div className="allergensButtons">
+        {allergens.map((item, index) => (
+          <button
+            value={item}
+            onClick={(e) => {
+              handleClick(e, index);
+            }}
+            key={index}
+            className={isButtonActive.includes(index) ? "allergySelected" : ""}
+          >
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
-

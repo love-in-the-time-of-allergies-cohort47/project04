@@ -1,0 +1,43 @@
+.attendingParty{
+    background-color: rgb(211, 207, 230);
+    color: black;
+}
+
+p{
+    margin-top: 2.5em;
+}
+
+.contactList {
+    margin: 0.5em 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+.friend__list button {
+    margin: 0.3em 0.2em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    max-width: 30%;
+    min-width: 14%;
+}
+
+.friend__list .menuButton {
+    max-width: 70%;
+}
+
+span {
+    display: block;
+    margin-top: 1.5em;
+}
+
+/* media queries */
+
+@media (max-width: 500px) {
+    .friend__list button {
+        max-width: 100%;
+    }
+}

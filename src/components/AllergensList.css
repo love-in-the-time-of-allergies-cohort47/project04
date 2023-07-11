@@ -1,0 +1,39 @@
+.allergySelected {
+    background-color: rgb(211, 207, 230);
+    color: black;
+}
+
+.allergensButtons{
+    margin: 0.5em 0 1.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.allergensButtons button {
+    margin: 0.3em 0.2em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    max-width: 30%;
+    min-width: 14%;
+}
+
+p {
+    margin-top: 2em;
+    margin-bottom: 0;
+}
+
+/* media queries */
+
+@media (max-width: 570px) {
+    .allergensButtons button{
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 385px) {
+    .allergensButtons button {
+        max-width: 100%;
+    }
+}

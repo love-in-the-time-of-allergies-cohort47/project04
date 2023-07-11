@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
-import RecipesCollection from "./RecipesCollection";
-import TypeOfParty from "./TypeOfParty";
-
+import { UniqueAllergies } from "./FriendInfoContext";
+import { Link } from "react-router-dom";
+import './Party.css';
 
 const WhosComingToParty = () => {
   const [searchableList, setSearchableList] = useState([]);
-  const [partyAllergies, setPartyAllergies] = useState([]);
-  const uniqueAllergies = new Set(partyAllergies);
-  const [showRecipes, setShowRecipes] = useState(false);
+  const {partyAllergies, setPartyAllergies} = useContext(UniqueAllergies);
+  const [isButtonActive, setButtonActive] = useState([]);
+ 
 
   useEffect(() => {
     const newState = [];
@@ -23,63 +23,65 @@ const WhosComingToParty = () => {
       // here we use Firebase's .val() method to parse our database info the way we want it
       const data = response.val();
       const friends = data.friends;
-      // console.log(friends);
       for (let key in friends) {
-        // console.log(key);
-        // console.log(friends[key].name);
         newState.push({ key: key, friend: friends[key] });
       }
       setSearchableList(newState);
     });
   }, []);
-  const handleClick =(e)=>{
-    // console.log(e);
+   useEffect(()=>{
+    setPartyAllergies([])
+    const allergensArray =[];
+    isButtonActive.forEach((indexNumber)=>{
+      const personAllergy = searchableList[indexNumber].friend.allergies;
+      if(personAllergy){
+        allergensArray.push(...personAllergy);
+      }
+      
+    })
+    setPartyAllergies(allergensArray)
+    
+    
+    
+   
+
+
+   },[isButtonActive])
+  const handleClick= (e, index)=>{
+    setButtonActive([...isButtonActive, index]);
+    if(isButtonActive.includes(index)){
+      const delButtons = [...isButtonActive];
+      delButtons.splice(isButtonActive.indexOf(index), 1);
+      setButtonActive(delButtons)
+    }
   }
 
-  const handleSearchClick = () => {
-    setShowRecipes(true);
-  }
-
-
-  // console.log(partyAllergies);
-  // console.log(uniqueAllergies);
-
+ 
   return (
     <div className="friend__list">
-      {/* <div className="nameContainer">
-        <FaSearch id="search-icon" />
-        <input
-          className="nameContainer__input"
-          type="text"
-          id="searchFriend__name"
-          placeholder="Type name to search"
-        />
-      </div> */}
-      {
-        searchableList.map((ele) => (
-          <button key={ele.key} onClick={(e) => {
-            console.log(ele.friend.allergies);
-            setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
-            handleClick(e)
-          }}>
-            {ele.friend.name}
+        {
+          searchableList.map((ele, index) => (
+            <button key={ele.key} 
+            className={isButtonActive.includes(index) ? 'attendingParty' : ''}
+            onClick={(e) => {
+            handleClick(e, index)
+              if(ele.friend.allergies){
+                setPartyAllergies([...partyAllergies, ...ele.friend.allergies])
+              }
+              
+            }}>
+              {ele.friend.name}
 
-          </button>
+            </button>
 
-        ))
-      }
-      <button onClick={handleSearchClick}>Find me recipes!</button>
-      <div>
-        <TypeOfParty />
-      </div>
-      <div>
-        { showRecipes && <RecipesCollection partyAllergies={[...uniqueAllergies]} /> }
-
-      </div>
-
+          ))
+        }
+        <span>
+          <Link to={`/pickRecipe`}>
+            <button className='btn menuButton' >Plan the Menu!</button>
+          </Link>
+        </span>
     </div>
-
-
 
   )
 }
@@ -89,17 +91,15 @@ const Party = () => {
 
   return (
     <div className="wrapper">
-      <header>
+      {/* <header>
         <h1>Plan A Party</h1>
-      </header>
-      <div>
+      </header> */}
+      {/* <div>
         <label htmlFor="partyName">Party Name</label>
         <input type="text" id="partyName" placeholder="Enter your party name" />
-      </div>
+      </div> */}
       <div>
-        <h2>
-          Who's Coming to party ?
-        </h2>
+        <p>Select your guests:</p>
         <div className="contactList">
           <WhosComingToParty />
         </div>

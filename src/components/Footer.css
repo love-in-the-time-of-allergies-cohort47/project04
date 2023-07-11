@@ -1,0 +1,14 @@
+footer {
+    margin: auto auto -2rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+footer p{
+    border-top: 1px solid #871A3E;
+    padding: 10px 0;
+    color: #D3CFE6;
+    max-width: 90%;
+}
+
