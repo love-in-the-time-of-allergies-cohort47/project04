@@ -16,7 +16,9 @@ import { Routes, Route } from "react-router-dom";
 import Party from "./components/Party";
 import { Link } from "react-router-dom";
 import TypeOfParty from "./components/TypeOfParty";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
+import friendLogo from './assets/friend.svg';
+import mealLogo from './assets/meal.svg'
 
 
 function App() {
@@ -44,13 +46,13 @@ function App() {
                 <Link to={`/`}>  
                 <button className='btnFriend' onClick={()=>{
                   setAddFriend(true)
-                }}>Add a Friend!</button>
+                }}><img className="navIcons" src={friendLogo} alt="Add a friend button" label="Add a friend button" /></button>
                 </Link>
                 
                 <Link to={`/party`}>
                 <button className='btn' onClick={()=>{
                   setAddFriend(false);
-                }}>Plan Your Party!</button>
+                }}><img className="navIcons" src={mealLogo} alt="Plan a party button" label="Plan a party button" /></button>
                 </Link>
               </div>
             </nav>
@@ -63,7 +65,7 @@ function App() {
         <Route path="/pickRecipe" element={ <TypeOfParty/> } />
       </Routes>
       </main>
-      <Footer/>
+      {/* <Footer/> */}
     </UniqueAllergies.Provider>
     </AllergiesList.Provider>
     </MealTypeList.Provider>

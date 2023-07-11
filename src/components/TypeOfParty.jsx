@@ -53,7 +53,7 @@ const TypeOfParty = () => {
             </div>
           </div>
           <span>
-            <button className="btn" type="submit">
+            <button className="btn searchBtn" type="submit">
               Search Recipes
             </button>
           </span>

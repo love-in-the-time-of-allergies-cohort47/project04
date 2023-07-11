@@ -1,13 +1,18 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 2rem 0;
   text-align: center;
+  z-index: 100;
+  background-color: #871A3E;
+  border-radius: 60px;
 }
 
 .btn,
 .btnFriend{
-  background-color: #871A3E;
+  /* background-color: #871A3E;
+   */
+  background-color: transparent;
   color: #D3CFE6;
   margin: 0 2em;
 }
@@ -15,7 +20,7 @@
 
 main {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 

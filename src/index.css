@@ -95,3 +95,39 @@ button{
   display: flex;
   flex-direction: column;
 }
+
+/* FOOTER STYLING */
+footer {
+  width: 100%;
+  background-color: #242424;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  padding: 10px 0;
+  z-index: 500;
+}
+
+footer p {
+  margin: 0;
+}
+
+body {
+  background-image: url(../src/assets/luisa-brimble-2RrBE90w0T8-unsplash.jpg);
+  background-size: cover;
+  contain: content;
+}
+
+.gradient {
+  height: 100%;
+  width: 100%;
+  background: rgb(38,7,85);
+  background: linear-gradient(0deg, rgba(38,7,85,1) 0%, rgba(38,7,85,0) 100%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+* {
+  border: solid 1px red;
+}

@@ -13,9 +13,25 @@ p{
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    margin-bottom: 50px;
 }
 
+.menuButton {
+    padding: 20px 50px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    background-color: #1a1a1a;
+}
 
+.menuButton:hover,
+.menuButton:focus,
+.menuButton:focus-visible {
+    transition: 0.2s;
+    border-color: #D3CFE6;
+    background-color: #D3CFE6;
+    color: #1a1a1a;
+}
 
 .friend__list button {
     margin: 0.3em 0.2em;

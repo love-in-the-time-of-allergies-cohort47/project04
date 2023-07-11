@@ -3,7 +3,7 @@
     display:flex;  
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #260755;
+    /* background-color: #260755; */
     width: 100%;
 
 }

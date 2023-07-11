@@ -2,6 +2,13 @@ form {
     margin-top: 2.5em;
 }
 
+.save {
+    padding: 20px 50px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
 
 .save:hover {
     transition: 0.2s;

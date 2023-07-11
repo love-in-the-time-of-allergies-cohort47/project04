@@ -7,15 +7,35 @@ div {
 .radioContainer {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 30px;
 }
 
 .buttonsContainer {
-    width: 32%;
+    width: 25%;
 }
 
 span {
     margin-top: 2em;
+}
+
+.searchBtn {
+    padding: 20px 50px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    background-color: #1a1a1a;
+    margin-bottom: 50px;
+}
+
+.searchBtn:hover,
+.searchBtn:focus,
+.searchBtn:focus-visible {
+    transition: 0.2s;
+    border-color: #D3CFE6;
+    background-color: #D3CFE6;
+    color: #1a1a1a;
 }
 
 /* media queries */
