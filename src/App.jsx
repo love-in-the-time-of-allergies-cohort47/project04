@@ -46,13 +46,13 @@ function App() {
                 <Link to={`/`}>  
                 <button className='btnFriend' onClick={()=>{
                   setAddFriend(true)
-                }}><img className="navIcons" src={friendLogo} alt="Add a friend button" label="Add a friend button" /></button>
+                }}><img className="navIcons" src={friendLogo} alt="Add a friend button" label="Add a friend button" title="Add a friend button"/></button>
                 </Link>
                 
                 <Link to={`/party`}>
                 <button className='btn' onClick={()=>{
                   setAddFriend(false);
-                }}><img className="navIcons" src={mealLogo} alt="Plan a party button" label="Plan a party button" /></button>
+                }}><img className="navIcons" src={mealLogo} alt="Plan a party button" label="Plan a party button" title="Plan a party button" /></button>
                 </Link>
               </div>
             </nav>
