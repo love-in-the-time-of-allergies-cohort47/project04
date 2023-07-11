@@ -35,11 +35,15 @@ body {
   background-image: url(../src/assets/luisa-brimble-2RrBE90w0T8-unsplash.jpg);
   background-size: cover;
   contain: content;
+  display: flex;
+  flex-direction: column;
+  align-items: center
 }
 
 * {
   margin: 0;
-  padding: 0
+  padding: 0;
+  /* border: 1px solid red; */
 }
 
 a {
@@ -89,23 +93,11 @@ button:focus-visible {
   }
 }
 
-/* * {
-  margin: 0;
-  padding: 0;
-  border: 1px solid red;
-} */
-
-body {
-  background-color: #260755;
-  display: flex;
-  flex-direction: column;
-  align-items: center
-}
-
 .backgroundContainer {
   /* background-image: url(../src/assets/luisa-brimble-2RrBE90w0T8-unsplash.jpg);
   background-size: cover; */
   width: 100%;
+  postion: relative;
 }
 
 .wrapper {
@@ -136,7 +128,10 @@ form {
   height: 50vh;
   margin: auto 0;
   padding: 0;
-  display: none;
+  position: absolute;
+  left: 0;
+  top:  25%;
+  /* display: none; */
 }
 
 .contentSection {
@@ -188,6 +183,7 @@ nav {
   display: flex;
   flex-direction: column;
   z-index: 100;
+  width: 200px;
 }
 
 /* FOOTER STYLING */

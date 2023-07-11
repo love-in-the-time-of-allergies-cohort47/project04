@@ -47,7 +47,7 @@ const AddYourFriend = () => {
     };
 
     return (
-        <div className="wrapper">
+        <div className="wrapper friendContainer formContainer">
             <form action="" onSubmit={handleSubmit}>
                 <label htmlFor="addAFriend" id="addAFriend">Add a Friend!</label>
                 <input id="addAFriend" type="text" onChange={handleNameChange} value={name} />
